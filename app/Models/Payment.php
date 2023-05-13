@@ -5,21 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class Payment extends Model
 {
     use HasFactory;
 
-    /**
-     * @var bool
-     */
-    protected $table = 'product';
+    protected $table = 'payment';
 
     public $timestamps = false;
 
     protected $fillable = [
-        'name',
-        'price',
-        'quantity',
-        'img'
+        'payment_type',
     ];
 }

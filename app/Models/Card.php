@@ -5,21 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class Card extends Model
 {
     use HasFactory;
 
-    /**
-     * @var bool
-     */
-    protected $table = 'product';
+    protected $table = 'card';
 
     public $timestamps = false;
 
     protected $fillable = [
-        'name',
-        'price',
-        'quantity',
-        'img'
+        'card_number',
+        'cpf_client',
+        'card_expire_date',
+        'cvv_card',
     ];
 }
