@@ -13,6 +13,11 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
+     * @var string
+     */
+    protected $table = 'user';
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
@@ -21,7 +26,6 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-
     ];
 
     /**
@@ -42,4 +46,17 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function client()
+    {
+        return $this->hasOne(Client::class,'id_user');
+    }
+
+    public function admin()
+    {
+        return $this->hasOne(Admin::class,'id_user');
+    }
 }

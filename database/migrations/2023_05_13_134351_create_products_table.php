@@ -16,7 +16,6 @@ return new class extends Migration
             $table->id();
             $table->string("name",250)->nullable(false);
             $table->decimal("price")->nullable(false);
-            $table->foreignId('id_bag')->constrained('bag');
             $table->integer("quantity")->nullable(false)->default(0);
             $table->text("img");
         });
