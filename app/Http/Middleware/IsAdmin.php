@@ -16,10 +16,10 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::check() && Auth::user()->admin()->first()){
+        if (Auth::check() && Auth::user()->admin()->first()) {
             return $next($request);
         }
-        dd("alou");
+        dd("Voce nao está logado como admin");
         return redirect()->back();
     }
 }

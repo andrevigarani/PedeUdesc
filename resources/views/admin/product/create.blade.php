@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <!-- basic -->
     <meta charset="utf-8">
@@ -28,76 +29,84 @@
     <!-- owl stylesheets -->
     <link rel="stylesheet" href="/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
+        media="screen">
 </head>
-<body>
-<!-- header section start -->
-<div class="header_section">
-    <div class="container-fluid">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="logo"><a href="AdminHome.html"><img src="/images/logo.png"></a></div>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a href="AdminOrder.html"><img src="/images/admin_icon.png" style="width: 65px; padding-top: 14px;"></a></li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img src="/images/icone_pessoa_home.png" style="width: 50px; padding-top: 3px;">
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="Login.php">Sair</a>
-                        </div>
-                    </li>
-                    <p>Olá!</p>
-                </ul>
-            </div>
-        </nav>
-    </div>
-</div>
 
-<!-- header section end -->
-<!-- contact section start -->
-<div class="contact_section layout_padding">
-    <div class="container">
-        <form enctype="multipart/form-data" method="post" action="{{ route('admin.product.store') }}">
-            @csrf
-            <div class="row">
-                <div class="col-md-6">
-                    <p>Voltar</p>
-                    <h1 class="contact_text" style="color: black;"><b>Cadastrar produto</b></h1>
-                    <div class="mail_sectin">
-                        <input type="text" class="email-bt" placeholder="Nome" name="name">
-                        <input type="text" class="email-bt" placeholder="Valor" name="price">
-                        <input type="text" class="email-bt" placeholder="Quantidade" name="quantity">
+<body>
+    <!-- header section start -->
+    <div class="header_section">
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="logo"><a href="AdminHome.html"><img src="/images/logo.png"></a></div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a href="AdminOrder.html"><img src="/images/admin_icon.png"
+                                    style="width: 65px; padding-top: 14px;"></a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img src="/images/icone_pessoa_home.png" style="width: 50px; padding-top: 3px;">
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="Login.php">Sair</a>
+                            </div>
+                        </li>
+                        <p>Olá!</p>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <!-- header section end -->
+    <!-- contact section start -->
+    <div class="contact_section layout_padding">
+        <div class="container">
+            <form enctype="multipart/form-data" method="post" action="{{ route('admin.product.store') }}">
+                @csrf
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>Voltar</p>
+                        <h1 class="contact_text" style="color: black;"><b>Cadastrar produto</b></h1>
+                        <div class="mail_sectin">
+                            <input type="text" class="email-bt" placeholder="Nome" name="name">
+                            <input type="number" class="email-bt" placeholder="Valor" name="price">
+                            <input type="number" class="email-bt" placeholder="Quantidade" name="quantity">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="file" class="" name="img" style="margin-top: 6cm; margin-left: 3cm;">
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <input type="file" class="" name="img">
-                </div>
-            </div>
 
-            <button type="submit" class="btn btn-primary" style="text-align: center;">Cadastrar</button>
-        </form>
+                <button type="submit" class="btn btn-primary"
+                    style="text-align: center; margin-top: 1cm; background-color: #72DB8F;outline: none; border: none;">Cadastrar</button>
+            </form>
+        </div>
     </div>
-</div>
 
-<div class="copyright_section">
-    <div class="container">
-        <p class="copyright_text">2023 All Rights Reserved. Design by MN Sistemas</a></p>
+    <div class="copyright_section">
+        <div class="container">
+            <p class="copyright_text">2023 All Rights Reserved. Design by MN Sistemas</a></p>
+        </div>
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/popper.min.js"></script>
+        <script src="/js/bootstrap.bundle.min.js"></script>
+        <script src="/js/jquery-3.0.0.min.js"></script>
+        <script src="/js/plugin.js"></script>
+        <!-- sidebar -->
+        <script src="/js/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="/js/custom.js"></script>
+        <!-- javascript -->
+        <script src="/js/owl.carousel.js"></script>
+        <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
     </div>
-    <script src="/js/jquery.min.js"></script>
-    <script src="/js/popper.min.js"></script>
-    <script src="/js/bootstrap.bundle.min.js"></script>
-    <script src="/js/jquery-3.0.0.min.js"></script>
-    <script src="/js/plugin.js"></script>
-    <!-- sidebar -->
-    <script src="/js/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script src="/js/custom.js"></script>
-    <!-- javascript -->
-    <script src="/js/owl.carousel.js"></script>
-    <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
-</div>
 </body>
+
 </html>
