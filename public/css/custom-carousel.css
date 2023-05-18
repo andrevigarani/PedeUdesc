@@ -1,0 +1,43 @@
+/* Carousel container
+.food-carousel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Individual carousel item */
+/* .food-carousel .carousel-item {
+    text-align: center;
+} */
+
+/* Image within carousel item */
+/* .food-carousel img {
+    max-width: 100%;
+    height: auto;
+    margin-left: 30px;
+} */
+
+/* Carousel dots */
+/* .food-carousel .slick-dots {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+} */
+
+/* Custom styling for dots */
+/* .food-carousel .slick-dots li {
+    display: inline-block;
+    margin: 30px;
+} */
+
+/* Active dot styling */
+/* .food-carousel .slick-dots li.slick-active button {
+    background-color: #000;
+} */
+
+/* Optional: Additional styling for slide captions or other elements */
+/* .food-carousel .carousel-caption {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #961818;
+    padding: 30px;
+} */
