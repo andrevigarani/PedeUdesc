@@ -18,7 +18,7 @@ class ProductController extends Controller
 
         Product::create($data);
 
-        return redirect()->route('home');
+        return redirect()->route('admin.product.create');
     }
 
     public function create()
@@ -44,16 +44,28 @@ class ProductController extends Controller
         $product = Product::find($id);
 
         if (!$product) {
-            // Lógica para lidar com o produto não encontrado
+            dd('voce tentou colocar um produto inexistente');
         }
 
-        $product->nome = $request->input('nome');
-        $product->descricao = $request->input('descricao');
-        // Atualize os outros campos do produto conforme necessário
+        $product->name = $request->input('name');
+        $product->price = $request->input('price');
+        $product->quantity = $request->input('quantity');
 
         $product->save();
+        return redirect()->route('admin.home');
+    }
 
-        // Redirecione para a página de listagem de produtos ou qualquer outra página desejada
+    public function delete($id)
+    {
+        $product = Product::find($id);
+
+        if (!$product) {
+            dd('Você tentou remover um produto inexistente');
+        }
+
+        $product->delete();
+
+        return redirect()->route('admin.home');
     }
 
     public function show()

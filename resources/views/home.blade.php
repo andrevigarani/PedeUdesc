@@ -36,12 +36,14 @@
         <div class="food-carousel">
             @foreach ($products as $product)
             <div style="text-align: center;">
-                <img src="data:image/png;base64, {{ $product->img }}" alt="{{ $product->name }}" style="height: 320px; margin-left:50px;">
-                <button type="submit" class="btn btn-primary" style="color: black;text-align: center; margin-top: 5px; background-color: #72DB8F;outline: none; border: none; position: absolute; margin-top:-310px; margin-left: -145px;
-                height:28px; font-size: 11px;">
+                <img src="data:image/png;base64, {{ $product->img }}" alt="{{ $product->name }}"
+                    style="height: 320px; margin-left:50px;">
+                <button type="submit" class="btn btn-primary" style="color: white;text-align: center; margin-top: 5px; background-color: #72DB8F;outline: none; border: none; position: absolute; margin-top:-310px; margin-left: -145px;
+                height:28px; font-size: 13px;">
                     Adicionar à sacola</button>
                 <h4 style="font-size: 25px;">{{ $product->name }}</h4>
-                <p style="font-size: 18px;background-color: #72DB8F; padding: 5px; display: inline-block; border-radius: 50px;">
+                <p
+                    style="font-size: 18px;background-color: #72DB8F; padding: 5px; display: inline-block; border-radius: 50px;">
                     R${{ $product->price }}
                 </p>
             </div>
@@ -68,29 +70,29 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{ asset('js/slick.min.js') }}"></script>
     <script>
-        $(document).ready(function() {
-            $('.food-carousel').slick({
-                dots: true,
-                autoplay: true,
-                arrows: true,
-                slidesToShow: 3,
-                slidesToScroll: 1,
-                responsive: [{
-                        breakpoint: 768,
-                        settings: {
-                            slidesToShow: 2,
-                            slidesToScroll: 1
-                        }
-                    },
-                    {
-                        breakpoint: 576,
-                        settings: {
-                            slidesToShow: 1,
-                            slidesToScroll: 1
-                        }
+    $(document).ready(function() {
+        $('.food-carousel').slick({
+            dots: true,
+            autoplay: true,
+            arrows: true,
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            responsive: [{
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1
                     }
-                ]
-            });
+                },
+                {
+                    breakpoint: 576,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1
+                    }
+                }
+            ]
         });
+    });
     </script>
     @endpush

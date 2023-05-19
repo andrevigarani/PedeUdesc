@@ -31,14 +31,18 @@
         <p class="ipsum_text" style="font-size: 20px;">Satisfaça seu paladar com o melhor</p>
     </div>
 
+
+    <a href="{{ route('admin.product.create')}}" class="btn btn-primary" style="color: black;text-align: center; margin-top: 5px; outline: none; border: none; position: absolute; margin-top:-100px; margin-left: 1100px;text-decoration: none; color: white;
+     background-color:#72DB8F; height:30px; font-size: 14px;">+ Adicionar novo produto</a>
+
     <div class="food-carousel">
         @foreach ($products as $product)
         <div style="text-align: center;">
             <img src="data:image/png;base64, {{ $product->img }}" alt="{{ $product->name }}" style="height: 320px; margin-left:50px;">
-            <!-- <button type="submit" style="color: black;text-align: center; margin-top: 5px;outline: none; border: none; position: absolute; margin-top:-310px; margin-left: -145px;
-                height:28px; font-size: 14px;">
-                    Editar produto</button> -->
-            <a href="{{ route('admin.product.edit', $product->id) }}" class="edit-button">Editar produto</a>
+
+            <a href="{{ route('admin.product.edit', $product->id) }}" class="btn btn-primary" style="color: white;text-align: center; margin-top: 5px; background-color: #72DB8F;outline: none; border: none; position: absolute; margin-top:-310px; margin-left: -145px;
+                height:28px; font-size: 13px;">Editar produto</a>
+
             <h4 style="font-size: 25px;">{{ $product->name }}</h4>
             <p style="font-size: 18px;background-color: #72DB8F; padding: 5px; display: inline-block; border-radius: 50px;">
                 R${{ $product->price }}

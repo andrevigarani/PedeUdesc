@@ -1158,3 +1158,18 @@ textarea#comment::placeholder {
 .copyright_text a:hover {
     color: #72DB8F;
 }
+
+.mail_sectin {
+    margin-bottom: 20px;
+}
+
+.mail_sectin input[type="text"],
+.mail_sectin input[type="number"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #f7f7f7;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}

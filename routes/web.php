@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Define para onde irá caso queira sair da aplicação
 Route::get('/', function () {
     if (\Illuminate\Support\Facades\Auth::check()) {
         return redirect()->route('home');

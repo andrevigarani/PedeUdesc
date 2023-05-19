@@ -72,10 +72,9 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
 
-        if(strpos($data['email'],"@cantina") !== false){
+        if (strpos($data['email'], "@cantina") !== false) {
             $objUser->admin()->save(new Admin());
-        }
-        else{
+        } else {
             $objUser->client()->save(new Client());
         }
 
