@@ -27,9 +27,49 @@ class ProductController extends Controller
         return view('admin.product.create');
     }
 
+    public function edit($id)
+    {
+
+        $product = Product::find($id);
+
+        if (!$product) {
+            // Lógica para lidar com o produto não encontrado
+        }
+
+        return view('admin.product.update', ['product' => $product]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $product = Product::find($id);
+
+        if (!$product) {
+            // Lógica para lidar com o produto não encontrado
+        }
+
+        $product->nome = $request->input('nome');
+        $product->descricao = $request->input('descricao');
+        // Atualize os outros campos do produto conforme necessário
+
+        $product->save();
+
+        // Redirecione para a página de listagem de produtos ou qualquer outra página desejada
+    }
+
+    public function show()
+    {
+        return view('admin.product.update');
+    }
+
     public function showHome()
     {
         $products = Product::all();
         return view('home', ['products' => $products]);
+    }
+
+    public function showAdminHome()
+    {
+        $products = Product::all();
+        return view('admin.admin', ['products' => $products]);
     }
 }

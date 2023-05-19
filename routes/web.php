@@ -24,6 +24,6 @@ Auth::routes(['reset' => false]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 Route::get('/home', [App\Http\Controllers\ProductController::class, 'showHome'])->name('home');
+
+Route::get('/bag', [App\Http\Controllers\BagController::class, 'store'])->name('bag');

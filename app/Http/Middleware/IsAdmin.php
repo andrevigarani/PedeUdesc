@@ -14,12 +14,19 @@ class IsAdmin
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
+    // public function handle(Request $request, Closure $next): Response
+    // {
+    //     if (Auth::check() && Auth::user()->admin()->first()) {
+    //         return $next($request);
+    //     }
+    //     return redirect()->route('home');
+    // }
+
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::check() && Auth::user()->admin()->first()) {
+        if (Auth::check() && Auth::user()->admin) {
             return $next($request);
         }
-        dd("Voce nao está logado como admin");
-        return redirect()->back();
+        dd('você nao está logado como administrador');
     }
 }

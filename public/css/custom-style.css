@@ -1,0 +1,15 @@
+.mycustom-prev-arrow,
+.mycustom-next-arrow {
+    color: green;
+    background-color: green;
+    font-size: 18px;
+}
+
+.mycustom-prev-arrow::before,
+.mycustom-next-arrow::before {
+    content: "<";
+}
+
+.mycustom-next-arrow::before {
+    content: ">";
+}

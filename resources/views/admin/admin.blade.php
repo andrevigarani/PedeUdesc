@@ -1,20 +1,19 @@
-@extends('layouts.app')
-
+@extends('layouts.appAdmin')
 @section('content')
+
 <link rel="stylesheet" href="{{ asset('css/custom-carousel.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('slick/slick.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('slick/slick-theme.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('slick/slick-theme.scss') }}">
 <link rel="stylesheet" href="{{ asset('css/custom-styles.css') }}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card" style="height: 100px; margin-top: 50px;">
-                <img src="images/alunos_index.png" alt="Alunos na cantina UDESC" style="width: 100%;">
+                <img src="{{ asset('images/alunos_index.png')}}" alt="Alunos na cantina UDESC" style="width: 100%;">
                 <div class="sobre" style="position: absolute; margin-top:100px; margin-left: 25px;">
-                    <img src="images/descricao_sobre.png.jpeg">
+                    <img src="{{ asset ('images/descricao_sobre.png.jpeg')}}">
                 </div>
                 <div class="card-body">
                     @if (session('status'))
@@ -27,31 +26,31 @@
         </div>
     </div>
 
-    <form enctype="multipart/form-data" method="get" action="{{ route('bag') }}">
-        <div style="margin-top: 450px; margin-bottom: 50px;text-align: center;">
-            <h1 class="our_text" style="font-size: 40px;">LANCHES</h1>
-            <p class="ipsum_text" style="font-size: 20px;">Satisfaça seu paladar com o melhor</p>
-        </div>
+    <div style="margin-top: 450px; margin-bottom: 50px;text-align: center;">
+        <h1 class="our_text" style="font-size: 40px;">LANCHES</h1>
+        <p class="ipsum_text" style="font-size: 20px;">Satisfaça seu paladar com o melhor</p>
+    </div>
 
-        <div class="food-carousel">
-            @foreach ($products as $product)
-            <div style="text-align: center;">
-                <img src="data:image/png;base64, {{ $product->img }}" alt="{{ $product->name }}" style="height: 320px; margin-left:50px;">
-                <button type="submit" class="btn btn-primary" style="color: black;text-align: center; margin-top: 5px; background-color: #72DB8F;outline: none; border: none; position: absolute; margin-top:-310px; margin-left: -145px;
-                height:28px; font-size: 11px;">
-                    Adicionar à sacola</button>
-                <h4 style="font-size: 25px;">{{ $product->name }}</h4>
-                <p style="font-size: 18px;background-color: #72DB8F; padding: 5px; display: inline-block; border-radius: 50px;">
-                    R${{ $product->price }}
-                </p>
-            </div>
-            @endforeach
+    <div class="food-carousel">
+        @foreach ($products as $product)
+        <div style="text-align: center;">
+            <img src="data:image/png;base64, {{ $product->img }}" alt="{{ $product->name }}" style="height: 320px; margin-left:50px;">
+            <!-- <button type="submit" style="color: black;text-align: center; margin-top: 5px;outline: none; border: none; position: absolute; margin-top:-310px; margin-left: -145px;
+                height:28px; font-size: 14px;">
+                    Editar produto</button> -->
+            <a href="{{ route('admin.product.edit', $product->id) }}" class="edit-button">Editar produto</a>
+            <h4 style="font-size: 25px;">{{ $product->name }}</h4>
+            <p style="font-size: 18px;background-color: #72DB8F; padding: 5px; display: inline-block; border-radius: 50px;">
+                R${{ $product->price }}
+            </p>
         </div>
+        @endforeach
+    </div>
 
-        <div style="margin-top: 200px; text-align: center;">
-            <h1 class="our_text" style="font-size: 40px;">BEBIDAS</h1>
-            <p class="ipsum_text" style="font-size: 20px;">Desfrute as diferentes opções</p>
-        </div>
+    <div style="margin-top: 200px; text-align: center;">
+        <h1 class="our_text" style="font-size: 40px;">BEBIDAS</h1>
+        <p class="ipsum_text" style="font-size: 20px;">Desfrute as diferentes opções</p>
+    </div>
 
 
 
