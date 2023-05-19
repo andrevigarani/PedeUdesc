@@ -8,10 +8,11 @@ use App\Models\Product;
 
 class ProductController extends Controller
 {
-    public function store(StoreProduct $createProduct){
+    public function store(StoreProduct $createProduct)
+    {
         $data = $createProduct->all();
 
-        if(isset($data['img'])) {
+        if (isset($data['img'])) {
             $data['img'] = base64_encode($data['img']->get());
         }
 
@@ -20,8 +21,15 @@ class ProductController extends Controller
         return redirect()->route('home');
     }
 
-    public function create(){
+    public function create()
+    {
 
         return view('admin.product.create');
+    }
+
+    public function showHome()
+    {
+        $products = Product::all();
+        return view('home', ['products' => $products]);
     }
 }
