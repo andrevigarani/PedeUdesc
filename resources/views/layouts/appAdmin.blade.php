@@ -18,6 +18,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('slick/slick-theme.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('slick/slick-theme.scss') }}">
     <link rel="stylesheet" href="{{ asset('css/custom-styles.css') }}">
+    <link rel="icon" type="image/png" href="{{ asset('images/fevicon.png') }}">
 
 
     <!-- Scripts -->
