@@ -36,7 +36,7 @@ class BagController extends Controller
         'id' => $product->id,
         'name' => $product->name,
         'price' => $product->price,
-        'img' => $img->img
+        //'img' => $img->img
     ];
 
     // Crie uma nova resposta
@@ -58,7 +58,7 @@ class BagController extends Controller
     $productBag = json_decode(request()->cookie('bag'), true)[$clientId] ?? [];
 
     // Exiba os produtos da sacola na view
-    return view('bag', ['products' => $productBag]);
+    return view('user.bag', ['products' => $productBag]);
     }
 
 }

@@ -41,7 +41,7 @@
                 <!--<button type="submit" class="btn btn-primary" style="color: white;text-align: center; margin-top: 5px; background-color: #72DB8F;outline: none; border: none; position: absolute; margin-top:-310px; margin-left: -145px;
                 height:28px; font-size: 13px;"> Adicionar à sacola</button>
             -->
-                <a href="{{ route('bag.add', [ id->$product ]) }}">Add sacola</a>
+                <a href="{{ route('bag.add', [ 'id' => $product['id'] ]) }}">Add sacola</a>
                 
                 <h4 style="font-size: 25px;">{{ $product->name }}</h4>
                 <p
