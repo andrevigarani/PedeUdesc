@@ -27,4 +27,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/home', [App\Http\Controllers\ProductController::class, 'showHome'])->name('home');
 
-Route::get('/bag', [App\Http\Controllers\BagController::class, 'store'])->name('bag');
+//Route::get('/product/bag', [App\Http\Controllers\BagController::class, 'showBag'])->name('product.bag');
+
+//Route::post('/bag/${id}', [App\Http\Controllers\BagController::class, 'create'])->name('bag');
