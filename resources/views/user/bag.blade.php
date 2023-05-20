@@ -3,7 +3,7 @@
 
     <div class="contact_section layout_padding">
         @csrf
-            <a href="{{ route('admin.home')}}" class="btn btn-primary" style="margin-left: 0px; text-decoration: none; color: white; background-color:#72DB8F;
+            <a href="{{ route('home')}}" class="btn btn-primary" style="margin-left: 0px; text-decoration: none; color: white; background-color:#72DB8F;
                 outline: none; border: none;">Voltar</a>
 
         <h1>Sacola de Produtos</h1>

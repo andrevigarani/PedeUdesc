@@ -27,6 +27,7 @@ class BagController extends Controller
     // Se o ID do cliente não estiver no cookie, crie um novo ID aleatório
     if (!$clientId) {
         $clientId = uniqid(); // Gera um ID único
+        dd($clientId);
         $cookie = Cookie::make('id_user', $clientId, 1440); // Define o cookie com 1 dia de duração (1440 minutos)
         $productBag[$clientId] = []; // Crie uma entrada vazia na sacola para o novo cliente
     }
@@ -52,6 +53,7 @@ class BagController extends Controller
 
     public function showBag()
     {
+    
     // Obtenha o ID do cliente do cookie
     $clientId = Cookie::get('id_user');
 
