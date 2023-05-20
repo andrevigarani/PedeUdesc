@@ -8,13 +8,13 @@
 
         <h1>Sacola de Produtos</h1>
 
-        @if (!empty($products))
+       
         <ul>
             @foreach ($products as $product)
                 <li>{{ $product['name'] }} - R$ {{ $product['price'] }}</li>
             @endforeach
         </ul>
-    @else
+
         <p>A sacola está vazia.</p>
     @endif
 

@@ -39,6 +39,7 @@ class BagController extends Controller
         //'img' => $img->img
     ];
 
+    //dd($productBag);
     // Crie uma nova resposta
     $response = new Response('Produto adicionado à sacola!');
 
