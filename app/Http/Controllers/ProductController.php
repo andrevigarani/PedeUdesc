@@ -32,10 +32,6 @@ class ProductController extends Controller
 
         $product = Product::find($id);
 
-        if (!$product) {
-            // Lógica para lidar com o produto não encontrado
-        }
-
         return view('admin.product.update', ['product' => $product]);
     }
 

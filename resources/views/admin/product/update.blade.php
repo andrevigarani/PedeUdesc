@@ -26,14 +26,11 @@
                     </div>
 
                     <div class="mail" style="margin-top: 0.5cm; pointer-events: auto;">
-                        <input type="text" name="name" value="{{ $product->name}}"
-                            style="width: 60%; padding: 10px; margin-bottom: 10px; background-color: #fafafa; border: 1px solid #ddd; border-radius: 4px; pointer-events: auto;">
+                        <input type="text" name="name" value="{{ $product->name}}" style="width: 60%; padding: 10px; margin-bottom: 10px; background-color: #fafafa; border: 1px solid #ddd; border-radius: 4px; pointer-events: auto;">
 
-                        <input type="number" name="price" value="{{ $product->price }}"
-                            style="width: 60%; padding: 10px; margin-bottom: 10px; background-color: #f7f7f7; border: 1px solid #ddd; border-radius: 4px; pointer-events: auto;">
+                        <input type="number" name="price" value="{{ $product->price }}" style="width: 60%; padding: 10px; margin-bottom: 10px; background-color: #f7f7f7; border: 1px solid #ddd; border-radius: 4px; pointer-events: auto;">
 
-                        <input type="number" name="quantity" value="{{ $product->quantity }}"
-                            style="width: 60%; padding: 10px; margin-bottom: 10px; background-color: #f7f7f7; border: 1px solid #ddd; border-radius: 4px; pointer-events: auto;">
+                        <input type="number" name="quantity" value="{{ $product->quantity }}" style="width: 60%; padding: 10px; margin-bottom: 10px; background-color: #f7f7f7; border: 1px solid #ddd; border-radius: 4px; pointer-events: auto;">
                     </div>
                 </div>
 

@@ -1,27 +1,20 @@
 @extends('layouts.app')
+
 @section('content')
 
+<div class="contact_section layout_padding">
     <div class="contact_section layout_padding">
-        @csrf
-        <a href="{{ route('home')}}" class="btn btn-primary" style="margin-left: 0px; text-decoration: none; color: white; background-color:#72DB8F;
-                outline: none; border: none;">Voltar</a>
+        <a href="{{ route('home') }}" class="btn btn-primary"
+            style="margin-left: 0px; text-decoration: none; color: white; background-color:#72DB8F; outline: none; border: none;">Voltar</a>
 
-<h1>Sacola de Produtos</h1>
-
-    @foreach ($productBag as $item)
-        <div class="product">
-            <h3>{{ $item->name }}</h3>
-            <div class="product-details">
-                <span class="product-id">ID: {{ $item->id }}</span>
-                <span class="product-price">Preço: R$ {{ $item->price }}</span>
-            </div>
-        </div>
-    @endforeach
-
-    @if (empty($productBag))
-        <p>A sacola está vazia.</p>
-    @endif
-
+        <h1>Sacola de Produtos</h1>
+        @foreach ($product as $clientId => $productBag)
+        @foreach ($product as $p)
+        <h2>Produto: {{ $p['id'] }}</h2>
+        <!-- Exibir outras informações do produto -->
+        @endforeach
+        @endforeach
     </div>
-
+</div>
+</form>
 @endsection
