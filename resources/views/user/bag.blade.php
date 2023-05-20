@@ -16,6 +16,5 @@
         </ul>
 
         <p>A sacola está vazia.</p>
-    @endif
 
 @endsection
