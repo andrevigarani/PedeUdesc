@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\BagController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,6 +29,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/home', [App\Http\Controllers\ProductController::class, 'showHome'])->name('home');
 
-//Route::get('/product/bag', [App\Http\Controllers\BagController::class, 'showBag'])->name('product.bag');
+Route::get('/bag', [BagController::class, 'showBag'])->name('bag.show');
 
-//Route::post('/bag/${id}', [App\Http\Controllers\BagController::class, 'create'])->name('bag');
+Route::get('/bag/add/{id}', [BagController::class, 'addProduct'])->name('bag.add');

@@ -38,9 +38,11 @@
             <div style="text-align: center;">
                 <img src="data:image/png;base64, {{ $product->img }}" alt="{{ $product->name }}"
                     style="height: 320px; margin-left:50px;">
-                <button type="submit" class="btn btn-primary" style="color: white;text-align: center; margin-top: 5px; background-color: #72DB8F;outline: none; border: none; position: absolute; margin-top:-310px; margin-left: -145px;
-                height:28px; font-size: 13px;">
-                    Adicionar à sacola</button>
+                <!--<button type="submit" class="btn btn-primary" style="color: white;text-align: center; margin-top: 5px; background-color: #72DB8F;outline: none; border: none; position: absolute; margin-top:-310px; margin-left: -145px;
+                height:28px; font-size: 13px;"> Adicionar à sacola</button>
+            -->
+                <a href="{{ route('bag.add', ['id' => $productId]) }}">Add sacola</a>
+                    
                 <h4 style="font-size: 25px;">{{ $product->name }}</h4>
                 <p
                     style="font-size: 18px;background-color: #72DB8F; padding: 5px; display: inline-block; border-radius: 50px;">
