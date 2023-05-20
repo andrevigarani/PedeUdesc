@@ -29,6 +29,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/home', [App\Http\Controllers\ProductController::class, 'showHome'])->name('home');
 
-Route::get('/bag', [BagController::class, 'showBag'])->name('bag.show');
-
 Route::get('/bag/add/{id}', [BagController::class, 'addProduct'])->name('bag.add');
+
+Route::get('/bag', [BagController::class, 'showBag'])->name('bag.show');

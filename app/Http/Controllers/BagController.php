@@ -6,6 +6,8 @@ use App\Models\Product;
 
 use Illuminate\Support\Facades\Cookie;
 
+use Illuminate\Cookie\CookieJar;
+
 use Illuminate\Http\Request;
 
 use Illuminate\Http\Response;
@@ -27,8 +29,7 @@ class BagController extends Controller
     // Se o ID do cliente não estiver no cookie, crie um novo ID aleatório
     if (!$clientId) {
         $clientId = uniqid(); // Gera um ID único
-        dd($clientId);
-        $cookie = Cookie::make('id_user', $clientId, 1440); // Define o cookie com 1 dia de duração (1440 minutos)
+        $cookie = Cookie::withCookie('id_user', $clientId, 1440); // Define o cookie com 1 dia de duração (1440 minutos)
         $productBag[$clientId] = []; // Crie uma entrada vazia na sacola para o novo cliente
     }
 
@@ -40,28 +41,25 @@ class BagController extends Controller
         //'img' => $img->img
     ];
 
-    //dd($productBag);
     // Crie uma nova resposta
     $response = new Response('Produto adicionado à sacola!');
 
     // Armazene os produtos atualizados no cookie
     $response->cookie('bag', json_encode($productBag));
 
-    return $response;
-
+    return redirect()->route('bag.show');
     }
 
     public function showBag()
     {
-    
-    // Obtenha o ID do cliente do cookie
-    $clientId = Cookie::get('id_user');
+    // Obtenha o ID do cliente da sessão
+    $clientId = session()->get('id_user');;
 
-    // Recupere os produtos da sacola do cookie para o cliente específico
+    // Recupere os produtos da sacola do cliente específico
     $productBag = json_decode(request()->cookie('bag'), true)[$clientId] ?? [];
 
     // Exiba os produtos da sacola na view
-    return view('user.bag', ['products' => $productBag]);
+    return request()->cookie('id_user');
     }
 
 }
