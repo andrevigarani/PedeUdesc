@@ -17,7 +17,7 @@
     style="background-image: url('images/banner-bg.png'); width: 100%; float: left; height: auto; padding-bottom: 80px; background-size: 100%;">
 
     <!--<div class="card-header">{{ __('Login') }}</div> -->
-    <img src="images/background.png" style="position:absolute; height: 300px"><br>
+    <!-- <img src="images/background.png" style="position:absolute; height: 300px"><br> -->
     <div class="banner_section layout_padding">
         <div class="container">
             <div class="col-md-5 offset-md-4 bg-white"><br><br>
