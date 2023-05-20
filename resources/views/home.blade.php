@@ -27,7 +27,7 @@
         </div>
     </div>
 
-    <form enctype="multipart/form-data" method="get" action="{{ route('bag') }}">
+    
         <div style="margin-top: 450px; margin-bottom: 50px;text-align: center;">
             <h1 class="our_text" style="font-size: 40px;">LANCHES</h1>
             <p class="ipsum_text" style="font-size: 20px;">Satisfaça seu paladar com o melhor</p>
@@ -42,7 +42,7 @@
                 height:28px; font-size: 13px;"> Adicionar à sacola</button>
             -->
                 <a href="{{ route('bag.add', ['id' => $productId]) }}">Add sacola</a>
-                    
+                
                 <h4 style="font-size: 25px;">{{ $product->name }}</h4>
                 <p
                     style="font-size: 18px;background-color: #72DB8F; padding: 5px; display: inline-block; border-radius: 50px;">
@@ -65,7 +65,7 @@
     <div class="container" style="text-align: center;">
         <p class="copyright_text">2023 All Rights Reserved. Design by MN Sistemas</a></p>
     </div>
-    </form>
+    
     @endsection
 
     @push('other-scripts')
