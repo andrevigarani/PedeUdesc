@@ -10,10 +10,7 @@
 
     @foreach ($productBag as $item)
         <div class="product">
-            <h3>{{ $item->name }}</h3>
-            <div class="product-details">
-                <span class="product-id">ID: {{ $item->id }}</span>
-                <span class="product-price">Preço: R$ {{ $item->price }}</span>
+            dd($productBag);
             </div>
         </div>
     @endforeach
