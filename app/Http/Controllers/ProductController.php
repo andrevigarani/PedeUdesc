@@ -17,11 +17,13 @@ class ProductController extends Controller
             $data['img'] = base64_encode($data['img']->get());
         }
 
-        Product::create($data);
+        $product = Product::create($data);
 
-        for($i = 0; $i < $data['quantidade']; $i++){
-            data[]
-            StockItem::create();
+        for($i = 0; $i < $data['quantity']; $i++){
+            StockItem::create([
+                'id_product' => $product->id,
+                'id_bag' => $bag->id
+            ]);
         }
 
         return redirect()->route('admin.product.create');

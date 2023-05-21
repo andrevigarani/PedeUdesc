@@ -13,6 +13,11 @@ class StockItem extends Model
 
     public $timestamps = false;
 
+    protected $fillable = [
+        'id_product',
+        'quantity'
+    ];
+
     public function bag()
     {
         return $this->hasOne(Bag::class,'id_bag');
