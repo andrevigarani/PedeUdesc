@@ -13,16 +13,15 @@
 
 </head>
 
-<body
-    style="background-image: url('images/banner-bg.png'); width: 100%; float: left; height: auto; padding-bottom: 80px; background-size: 100%;">
+<body style="background-image: url('images/banner-bg.png'); width: 100%; float: left; height: auto; padding-bottom: 80px; background-size: 100%;">
 
     <!--<div class="card-header">{{ __('Login') }}</div> -->
     <!-- <img src="images/background.png" style="position:absolute; height: 300px"><br> -->
     <div class="banner_section layout_padding">
-        <div class="container">
-            <div class="col-md-5 offset-md-4 bg-white"><br><br>
-                <img src="images/logo.png" style="align-items: center;"><br>
-                <div class="card-body">
+        <div class="container" style="margin-top: 3cm; align-items: center; margin-right: 3cm;">
+            <div class="col-md-5 offset-md-4 bg-white" style="height: 350px;"><br><br>
+                <img src="images/logo.png" style="align-items: center; margin-left:1cm;"><br>
+                <div class="card-body" style="margin-right: 1cm;">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
@@ -30,8 +29,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                                    name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                                 @error('email')
                                 <span class="invalid-feedback" role="alert">
@@ -42,13 +40,10 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="password"
-                                class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password"
-                                    class="form-control @error('password') is-invalid @enderror" name="password"
-                                    required autocomplete="current-password">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
                                 @error('password')
                                 <span class="invalid-feedback" role="alert">
@@ -61,8 +56,7 @@
                         <div class="row mb-3">
                             <div class="col-md-6 offset-md-4">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember"
-                                        {{ old('remember') ? 'checked' : '' }}>
+                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                     <label class="form-check-label" for="remember">
                                         {{ __('Remember Me') }}
@@ -73,7 +67,8 @@
 
                         <div class="row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary" style="text-align: center; margin-left:1.5cm; background-color: #72DB8F;outline: none; border: none;
+        font-size: 18px;">
                                     {{ __('Login') }}
                                 </button>
 
