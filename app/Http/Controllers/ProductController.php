@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreProduct;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\StockItem;
 
 class ProductController extends Controller
 {
@@ -17,6 +18,11 @@ class ProductController extends Controller
         }
 
         Product::create($data);
+
+        for($i = 0; $i < $data['quantidade']; $i++){
+            data[]
+            StockItem::create();
+        }
 
         return redirect()->route('admin.product.create');
     }

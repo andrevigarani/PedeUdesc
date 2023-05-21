@@ -31,11 +31,11 @@ class BagController extends Controller
         if (!$clientId) {
             $clientId = uniqid(); // Gera um ID único
             $cookie = Cookie::make('id_user', Str::uuid(), 1440, '/', '.pedeudesc.test'); // Define o cookie com 1 dia de duração (1440 minutos)
-            $productBag[$clientId] = []; // Crie uma entrada vazia na sacola para o novo cliente
+            $productBag = []; // Crie uma entrada vazia na sacola para o novo cliente
         }
 
         // Adicione o produto à sacola
-        $productBag[$clientId][] = [
+        $productBag[] = [
             'id' => $product->id,
             'name' => $product->name,
             'price' => $product->price,
@@ -55,6 +55,7 @@ class BagController extends Controller
         // Obtenha os produtos da sacola do cookie
         $productBag = json_decode(request()->cookie('bag'), true) ?? [];
 
-        return view('user.bag', ['productBag' => $productBag]);
+        dd($productBag);
+        return view('user.bag')->with(['productBag' => $productBag]);
     }
 }

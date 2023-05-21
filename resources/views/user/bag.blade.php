@@ -8,13 +8,11 @@
             style="margin-left: 0px; text-decoration: none; color: white; background-color:#72DB8F; outline: none; border: none;">Voltar</a>
 
         <h1>Sacola de Produtos</h1>
-        @foreach($productBag as $clientId => $products)
-            <h3>Cliente: {{ $clientId }}</h3>
-                @foreach($products as $product)
-                    <p>Nome do Produto: {{ $product['name'] }}</p>
-                    <p>Preço: {{ $product['price'] }}</p>
-                    <p>Quantidade: {{ $product['quantity'] }}</p>
-                @endforeach
+        {{ json_encode($productBag) }}
+        @foreach($productBag as $products)
+            <p>Nome do Produto: {{ $product['name'] }}</p>
+            <p>Preço: {{ $product['price'] }}</p>
+            <p>Quantidade: {{ $product['quantity'] }}</p>
         @endforeach
 
     </div>

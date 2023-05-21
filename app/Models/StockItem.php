@@ -12,4 +12,14 @@ class StockItem extends Model
     protected $table = 'stock_item';
 
     public $timestamps = false;
+
+    public function bag()
+    {
+        return $this->hasOne(Bag::class,'id_bag');
+    }
+
+    public function product()
+    {
+        return $this->hasOne(Product::class,'id_product');
+    }
 }
