@@ -22,4 +22,11 @@ class Product extends Model
         'quantity',
         'img'
     ];
+
+    /**
+     * @return BelongsTo
+     */
+    public function stockItem(): BelongsTo{
+        return $this->belongsTo(StockItem::class);
+    }
 }

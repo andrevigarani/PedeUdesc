@@ -13,5 +13,28 @@ class Bag extends Model
 
     public $timestamps = false;
 
+    /**
+     * @return BelongsTo
+     */
+    public function stockItem(): BelongsTo{
+        return $this->belongsTo(StockItem::class);
+    }
 
+    /**
+     * @return BelongsTo
+     */
+    public function order(): BelongsTo{
+        return $this->belongsTo(Order::class);
+    }
+
+    public static function findOpenBagByClient($id)
+    {
+        $bag = self::where('id_client', $id)->first();
+
+        if (is_null($bag->order())) {
+            return $bag;
+        }
+
+        return null;
+    }
 }

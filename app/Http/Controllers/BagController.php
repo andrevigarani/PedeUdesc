@@ -2,17 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Client;
 use App\Models\Product;
-
-use Illuminate\Support\Facades\Cookie;
-
-use  Illuminate\Routing\ResponseFactory;
+use App\Models\StockItem;
+use App\Models\Bag;
 
 use Illuminate\Http\Request;
-
-use Illuminate\Http\Response;
-
-use Illuminate\Support\Str;
 
 class BagController extends Controller
 {
@@ -20,9 +15,17 @@ class BagController extends Controller
     public function addProduct(Request $request, $id)
     {
 
-        $stockItem = StockItem::find($id_product);
+        $stockItem = StockItem::findByProduct($id);
 
-       
+        $bag = Bag::findOpenBagByClient();
+
+        if(is_null($bag)){
+            $sessionId = Auth::id();
+            $client = Client::findByUser($sessionId);
+            $bag = Bag::create([$client]);
+        }
+
+        $stockItem->update(['id_bag'],[$bag]);
     }
 
     public function showBag()

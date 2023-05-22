@@ -25,4 +25,15 @@ class Client extends Model
     public function user(): BelongsTo{
         return $this->belongsTo(User::class,'id_user');
     }
+
+    public static function findByUser($id){
+
+        $client = self::where('id_user', $id)->first();
+
+        if ($client) {
+            return $client;
+        }
+
+        return null;
+    }
 }

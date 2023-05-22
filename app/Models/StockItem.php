@@ -27,4 +27,15 @@ class StockItem extends Model
     {
         return $this->hasOne(Product::class,'id_product');
     }
+
+    public static function findByProduct($id)
+    {
+        $stockItem = self::where('id_product', $id)->whereNull('id_bag')->first();
+
+        if ($stockItem) {
+            return $stockItem;
+        }
+
+        return null;
+    }
 }
