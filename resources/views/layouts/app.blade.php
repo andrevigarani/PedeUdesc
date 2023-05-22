@@ -36,7 +36,9 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
+                <ul class="navbar-nav">
+                     <li class="nav-item"><a href="UserShoppingBag.html"><img src="images/icone_sacola_home.png" style="width: 50px; padding-top: 5px; float: right;"></a></li>
+                </ul>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
 
