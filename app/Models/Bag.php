@@ -28,7 +28,7 @@ class Bag extends Model
      * @return BelongsTo
      */
     public function order(): BelongsTo{
-        return $this->belongsTo(Order::class);
+        return $this->belongsTo(Order::class, 'id_order');
     }
 
     public static function findOpenBagByClient($id)

@@ -40,4 +40,9 @@ class Client extends Model
 
         return null;
     }
+
+    public function bags()
+    {
+        return $this->hasMany(Bag::class, 'id_client');
+    }
 }
