@@ -7,13 +7,14 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('slick/slick-theme.scss') }}">
 <link rel="stylesheet" href="{{ asset('css/custom-styles.css') }}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-<div class="container">
-    <div class="row justify-content-center">
+
+<div class="container"> 
+<div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card" style="height: 100px; margin-top: 50px;">
-                <img src="{{ asset('images/alunos_index.png')}}" alt="Alunos na cantina UDESC" style="width: 50px;">
+                <img src="images/alunos_index.png" alt="Alunos na cantina UDESC" style="width: 100%;">
                 <div class="sobre" style="position: absolute; margin-top:100px; margin-left: 25px;">
-                    <img src="{{ asset ('images/descricao_sobre.png.jpeg')}}">
+                    <img src="images/descricao_sobre.png.jpeg">
                 </div>
                 <div class="card-body">
                     @if (session('status'))
