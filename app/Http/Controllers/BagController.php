@@ -20,16 +20,9 @@ class BagController extends Controller
     public function addProduct(Request $request, $id)
     {
 
-        $stockItem = StockItem::find($id);
+        $stockItem = StockItem::find($id_product);
 
-        if (!$stockItem) {
-            dd('Produto não encontrado.');
-        }
-
-        $stockItem->in_bag = true;
-        $stockItem->save();
-
-        return redirect()->route('user.show.bag');
+       
     }
 
     public function showBag()
