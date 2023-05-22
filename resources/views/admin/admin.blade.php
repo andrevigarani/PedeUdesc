@@ -11,7 +11,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card" style="height: 100px; margin-top: 50px;">
-                <img src="{{ asset('images/alunos_index.png')}}" alt="Alunos na cantina UDESC" style="width: 100%;">
+                <img src="{{ asset('images/alunos_index.png')}}" alt="Alunos na cantina UDESC" style="width: 50px;">
                 <div class="sobre" style="position: absolute; margin-top:100px; margin-left: 25px;">
                     <img src="{{ asset ('images/descricao_sobre.png.jpeg')}}">
                 </div>

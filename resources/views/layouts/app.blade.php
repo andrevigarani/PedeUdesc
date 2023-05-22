@@ -56,14 +56,12 @@
                         </li>
                         @endif
                         @else
-                        
-                        <li><a href="UserShoppingBag.html"><img src="images/icone_sacola_home.png" style="width: 50px; float: right;"></a></li>
+
+                        <li><a href="{{route('user.show.bag')}}"><img src="{{ asset('images/icone_sacola_home.png')}}" style="width: 50px; margin-top: -5px;"></a></li>
              
                         <li class="nav-item dropdown">
                     
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre style="font-size: 16px;">
-                                <!-- <img src="images/icone_sacola_home.png" style="height: 50px;">
-                                <img src="images/icone_pessoa_home.png" style="height: 50px;margin-right: 5px;"> -->
                                 {{ Auth::user()->name }}
                             </a>
 
