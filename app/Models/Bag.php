@@ -13,6 +13,10 @@ class Bag extends Model
 
     public $timestamps = false;
 
+    protected $fillable = [
+        'user',
+    ];
+
     /**
      * @return BelongsTo
      */
@@ -31,7 +35,7 @@ class Bag extends Model
     {
         $bag = self::where('id_client', $id)->first();
 
-        if (is_null($bag->order())) {
+        if (!is_null($bag) && is_null($bag->order())) {
             return $bag;
         }
 

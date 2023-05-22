@@ -14,6 +14,10 @@ class Client extends Model
      */
     protected $table = 'client';
 
+    protected $fillable = [
+        'user',
+    ];
+
     /**
      * @var bool
      */

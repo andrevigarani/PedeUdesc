@@ -6,6 +6,7 @@ use App\Models\Client;
 use App\Models\Product;
 use App\Models\StockItem;
 use App\Models\Bag;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 
@@ -17,14 +18,16 @@ class BagController extends Controller
 
         $stockItem = StockItem::findByProduct($id);
 
-        $bag = Bag::findOpenBagByClient();
+        $sessionId = Auth::id();
+
+        $client = Client::findByUser($sessionId);
+
+        $bag = Bag::findOpenBagByClient($client->id);
 
         if(is_null($bag)){
-            $sessionId = Auth::id();
-            $client = Client::findByUser($sessionId);
-            $bag = Bag::create([$client]);
+            $client->bag()->save(new Bag());
         }
-
+        
         $stockItem->update(['id_bag'],[$bag]);
     }
 
