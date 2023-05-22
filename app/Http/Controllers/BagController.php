@@ -25,10 +25,11 @@ class BagController extends Controller
         $bag = Bag::findOpenBagByClient($client->id);
 
         if(is_null($bag)){
-            $client->bags()->save(new Bag());
+            $bag = new Bag();
+            $client->bags()->save($bag);
         }
 
-        $stockItem->update(['id_bag'],[$bag]);
+        $stockItem->bag()->save($bag);
     }
 
     public function showBag()
