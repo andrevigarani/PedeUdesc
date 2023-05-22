@@ -21,8 +21,7 @@ class ProductController extends Controller
 
         for($i = 0; $i < $data['quantity']; $i++){
             StockItem::create([
-                'id_product' => $product->id,
-                'id_bag' => $bag->id
+                'id_product' => $product->id
             ]);
         }
 

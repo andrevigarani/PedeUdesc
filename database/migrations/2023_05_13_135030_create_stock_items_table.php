@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('stock_item', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_product')->constrained('product');
-            $table->foreignId('id_bag')->constrained('bag');
+            $table->foreignId('id_bag')->nullable()->constrained('bag');
         });
     }
 
