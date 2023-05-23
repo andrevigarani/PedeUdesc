@@ -5,17 +5,32 @@
 <div class="contact_section layout_padding">
     <div class="contact_section layout_padding">
         <a href="{{ route('home') }}" class="btn btn-primary"
-            style="margin-left: 0px; text-decoration: none; color: white; background-color:#72DB8F; outline: none; border: none;">Voltar</a>
-
-                @foreach($stockItems as $stockItem)
+            style="margin-left: 0px; text-decoration: none; color: white; background-color:#72DB8F; outline: none; border: none;">Voltar</a><br>
+            <h1 class="contact_text" style="color: black; margin-top:30px;"><b>Realizar Pedido</b></h1>
+            
+        <center>
+                <table class="order-table">
+                <thead>
                     <tr>
-                        <td>{{ $stockItem->product->name }}</td>
-                        <td>{{ $stockItem->product->quantity }}</td>
-                        <td>{{ $stockItem->product->price }}</td>
+                        <th style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd; background-color: #f2f2f2;">Nome</th>
+                        <th style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd; background-color: #f2f2f2;">Quantidade</th>
+                        <th style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd; background-color: #f2f2f2;">Preço</th>
                     </tr>
-                @endforeach
-
-                <p>Preço Total: {{ $totalPrice }}</p>
+                </thead>
+                <tbody>
+                    @foreach($stockItems as $stockItem)
+                        <tr>
+                            <td style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd;">{{ $stockItem->product->name }}</td>
+                            <td style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd;">{{ $stockItem->product->quantity }}</td>
+                            <td style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd;">{{ $stockItem->product->price }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+                
+            </table>
+            <p><b>Preço Total:</b> {{ $totalPrice }}</p>
+        </center>
+     
     </div>
     <div class="contact_section layout_padding">
         <h1 class="contact_text" style="color: black; margin-top:30px;"><b>Forma de Pagamento</b></h1>
@@ -40,8 +55,8 @@
             <label for="payment_pickup">Dinheiro</label>
         </div>
 
-            <button type="submit" class="btn btn-primary" style="text-align: center; margin-top: 0cm; margin-left:8cm; background-color: #72DB8F;outline: none; border: none;
-            font-size: 18px;">Confirmar Pedido</button>
+            <center><button type="submit" class="btn btn-primary" style="text-align: center; background-color: #72DB8F;outline: none; border: none;
+            font-size: 18px;">Confirmar Pedido</button></center>
         </form>
     </div>
 </div>
