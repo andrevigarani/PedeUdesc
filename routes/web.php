@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\BagController;
 
+use App\Http\Controllers\OrderController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,3 +29,5 @@ Auth::routes(['reset' => false]);
 Route::get('/home', [App\Http\Controllers\ProductController::class, 'showHome'])->name('home');
 Route::get('/bag/add/{id}', [BagController::class, 'addProduct'])->name('user.add.bag');
 Route::get('/bag', [BagController::class, 'showBag'])->name('user.show.bag');
+Route::get('/order', [OrderController::class, 'listProduct'])->name('user.order');
+Route::post('/order/payment', [OrderController::class, 'orderPayment'])->name('user.order.payment');

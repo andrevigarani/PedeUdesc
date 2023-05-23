@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 
     class OrderController extends Controller
     {
+
+    public function listProduct(){
+        return view('user.makeOrder');
+    } 
+
     public function generateQrCode()
     {
     $text = 'Hello, World!'; // Texto para o qual você deseja gerar o QR code
