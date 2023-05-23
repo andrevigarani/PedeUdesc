@@ -14,6 +14,10 @@ use App\Http\Requests\OrderPayment;
     class OrderController extends Controller
     {
 
+    public function __construct()
+    {
+        $this->sum = 0;
+    }
     public function listProduct(){
 
         $sessionId = Auth::id();
@@ -27,18 +31,18 @@ use App\Http\Requests\OrderPayment;
 
         $stockItems = StockItem::where('id_bag', true)->get();
 
-        $sum = 0;
+        $this->sum = 0;
 
         foreach ($stockItems as $stockItem) {
             $product = $stockItem->product;
 
             if ($product) {
                 $price = $product->price;
-                $sum += $price;
+                $this->sum += $price;
             }
         }
 
-        return view('user.makeOrder')->with(['stockItems' => $stockItems, 'totalPrice' => $sum]);
+        return view('user.makeOrder')->with(['stockItems' => $stockItems, 'totalPrice' => $this->sum]);
     } 
 
     public function orderPayment(OrderPayment $orderPayment){
@@ -47,9 +51,10 @@ use App\Http\Requests\OrderPayment;
 
         $idPayment = Payment::where('payment_type', $data['payment_method'])->first();
 
-        if($data->payment_method == 'p'){
-            return view('user.paymentPixOrder')->with(['payment' => $idPayment]);
-        } else if($data->payment_method == 'c'){
+        if($data['payment_method'] == 'p'){
+            $qrcode = $this->generateQrCode('Texto do QR Code PIX');
+            return view('user.paymentPixOrder')->with(['payment' => $idPayment, 'qrcode' => $qrcode, 'totalPrice' => $this->sum]);
+        } else if($data['payment_method'] == 'c'){
             return view('user.paymentCardOrder')->with(['payment' => $idPayment]);
         } else {
 
@@ -67,8 +72,9 @@ use App\Http\Requests\OrderPayment;
     {
     $text = 'Hello, World!'; // Texto para o qual você deseja gerar o QR code
 
-    $data = 'data:image/png;base64,' . base64_encode($this->generateQrCodeImage($text));
+    $data = 'data:image/png;base64,'.base64_encode($this->generateQrCodeImage($text));
 
+    dd($data);
     return response()->json(['qrcode' => $data]);
     }
 

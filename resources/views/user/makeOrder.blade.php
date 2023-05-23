@@ -36,7 +36,7 @@
         <h1 class="contact_text" style="color: black; margin-top:30px;"><b>Forma de Pagamento</b></h1>
 
         
-        <form enctype="multipart/form-data" method="post" action="/order/payment">
+        <form enctype="multipart/form-data" method="get" action="{{ route('user.order.payment') }}">
             @csrf
             @method('POST')
 

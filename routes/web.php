@@ -31,3 +31,4 @@ Route::get('/bag/add/{id}', [BagController::class, 'addProduct'])->name('user.ad
 Route::get('/bag', [BagController::class, 'showBag'])->name('user.show.bag');
 Route::get('/order', [OrderController::class, 'listProduct'])->name('user.order');
 Route::get('/order/payment', [OrderController::class, 'orderPayment'])->name('user.order.payment');
+Route::get('/order/payment/pix', [OrderController::class, 'createQrCode'])->name('user.order.payment.pix');
