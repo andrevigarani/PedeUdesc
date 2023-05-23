@@ -38,7 +38,7 @@ class BagController extends Controller
 
     public function showBag()
     {
-        $stockItems = StockItem::where('in_bag', true)->get();
+        $stockItems = StockItem::where('id_bag', true)->get();
 
         return view('user.bag')->with(['stockItems' => $stockItems]);
     }
