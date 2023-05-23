@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 
 //Rota para definir como será a home do usuário
 Route::middleware('admin')->group(function () {
-    Route::get('/home', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.home');
     Route::get('/home', [App\Http\Controllers\ProductController::class, 'showAdminHome'])->name('admin.home');
 });
 

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class StockItem extends Model
 {
@@ -20,12 +21,12 @@ class StockItem extends Model
 
     public function bag()
     {
-        return $this->hasOne(Bag::class,'id_bag');
+        return $this->belongsTo(Bag::class,'id_bag');
     }
 
-    public function product()
+    public function product() : BelongsTo
     {
-        return $this->hasOne(Product::class,'id_product');
+        return $this->belongsTo(Product::class,'id_product');
     }
 
     public static function findByProduct($id)

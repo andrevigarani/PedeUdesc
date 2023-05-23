@@ -29,7 +29,11 @@ class BagController extends Controller
             $client->bags()->save($bag);
         }
 
-        $stockItem->bag()->save($bag);
+        $stockItem->bag()->associate($bag);
+
+        $stockItem->save();
+
+        return redirect()->route('home');
     }
 
     public function showBag()

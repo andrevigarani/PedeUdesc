@@ -25,7 +25,6 @@ Route::get('/', function () {
 
 Auth::routes(['reset' => false]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/home', [App\Http\Controllers\ProductController::class, 'showHome'])->name('home');
 Route::get('/bag/add/{id}', [BagController::class, 'addProduct'])->name('user.add.bag');
 Route::get('/bag', [BagController::class, 'showBag'])->name('user.show.bag');
