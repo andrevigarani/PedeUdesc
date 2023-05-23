@@ -2,17 +2,27 @@
 
 @section('content')
 
+<br>
 <div class="contact_section layout_padding">
     <div class="contact_section layout_padding">
         <a href="{{ route('home') }}" class="btn btn-primary"
-            style="margin-left: 0px; text-decoration: none; color: white; background-color:#72DB8F; outline: none; border: none;">Voltar</a>
+            style="margin-left: 0px; text-decoration: none; color: white; background-color:#72DB8F; outline: none; border: none;">Voltar</a><br>
 
-            <h1>Detalhes do pagamento</h1>
+            <h1>Detalhes do Pagamento</h1>
 
             <p>Valor: R$ {{ $totalPrice }}</p>
 
+            <center>
+            <h2>Chave PIX</h2>
+            <p>{{ $pixKey }}</p>
+
             <h2>QR Code PIX</h2>
-            <img src="{{ $qrcode }}">
+            <img style="width:100px;" src="{{ asset('images/qrcode.png')}}">
+            
+            <a href="{{ route('messageSucess') }}" class="btn btn-primary"
+            style="margin-left: 0px; text-decoration: none; color: white; background-color:#72DB8F; outline: none; border: none;">Confirmar Pagamento</a><br>
+            
+            </center>
 
     </div>
 </div>

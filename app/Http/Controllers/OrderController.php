@@ -16,7 +16,7 @@ use App\Http\Requests\OrderPayment;
 
     public function __construct()
     {
-        $this->sum = 0;
+        $sum = 0;
     }
     public function listProduct(){
 
@@ -26,23 +26,22 @@ use App\Http\Requests\OrderPayment;
 
         $bag = Bag::findOpenBagByClient($client->id);
 
-        // Recuperar todas as bags do cliente
         $bags = $client->bags;
 
         $stockItems = StockItem::where('id_bag', true)->get();
 
-        $this->sum = 0;
+        $sum = 0;
 
         foreach ($stockItems as $stockItem) {
             $product = $stockItem->product;
 
             if ($product) {
                 $price = $product->price;
-                $this->sum += $price;
+                $sum += $price;
             }
         }
 
-        return view('user.makeOrder')->with(['stockItems' => $stockItems, 'totalPrice' => $this->sum]);
+        return view('user.makeOrder')->with(['stockItems' => $stockItems, 'totalPrice' => $sum]);
     } 
 
     public function orderPayment(OrderPayment $orderPayment){
@@ -51,10 +50,37 @@ use App\Http\Requests\OrderPayment;
 
         $idPayment = Payment::where('payment_type', $data['payment_method'])->first();
 
+        $sessionId = Auth::id();
+
+        $client = Client::findByUser($sessionId);
+
+        $bag = Bag::findOpenBagByClient($client->id);
+
+        $bags = $client->bags;
+
+        $stockItems = StockItem::where('id_bag', true)->get();
+
+        $sum = 0;
+
+        foreach ($stockItems as $stockItem) {
+            $product = $stockItem->product;
+
+            if ($product) {
+                $price = $product->price;
+                $sum += $price;
+            }
+        }
+
         if($data['payment_method'] == 'p'){
+
             $qrcode = $this->generateQrCode('Texto do QR Code PIX');
-            return view('user.paymentPixOrder')->with(['payment' => $idPayment, 'qrcode' => $qrcode, 'totalPrice' => $this->sum]);
+
+            $pixKey = $this->generatePixKey();
+
+            return view('user.paymentPixOrder')->with(['payment' => $idPayment, 'qrcode' => $qrcode, 'totalPrice' => $sum, 'pixKey' => $pixKey]);
+        
         } else if($data['payment_method'] == 'c'){
+
             return view('user.paymentCardOrder')->with(['payment' => $idPayment]);
         } else {
 
@@ -64,8 +90,20 @@ use App\Http\Requests\OrderPayment;
 
             return view('home');
         }
-
         
+    }
+
+    public function generatePixKey()
+{
+        $length = 20; 
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'; 
+        $pixKey = '';
+
+        for ($i = 0; $i < $length; $i++) {
+            $pixKey .= $characters[rand(0, strlen($characters) - 1)];
+        }
+
+        return $pixKey;
     }
 
     public function generateQrCode()
@@ -74,7 +112,6 @@ use App\Http\Requests\OrderPayment;
 
     $data = 'data:image/png;base64,'.base64_encode($this->generateQrCodeImage($text));
 
-    dd($data);
     return response()->json(['qrcode' => $data]);
     }
 
