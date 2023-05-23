@@ -10,6 +10,7 @@ use App\Models\StockItem;
 use App\Models\Bag;
 use App\Models\Payment;
 use App\Http\Requests\OrderPayment;
+use App\Models\Order;
 
     class OrderController extends Controller
     {
@@ -59,7 +60,7 @@ use App\Http\Requests\OrderPayment;
         $bags = $client->bags;
 
         $stockItems = StockItem::where('id_bag', true)->get();
-
+        
         $sum = 0;
 
         foreach ($stockItems as $stockItem) {
@@ -73,22 +74,16 @@ use App\Http\Requests\OrderPayment;
 
         if($data['payment_method'] == 'p'){
 
-            $qrcode = $this->generateQrCode('Texto do QR Code PIX');
-
             $pixKey = $this->generatePixKey();
 
-            return view('user.paymentPixOrder')->with(['payment' => $idPayment, 'qrcode' => $qrcode, 'totalPrice' => $sum, 'pixKey' => $pixKey]);
+            return view('user.paymentPixOrder')->with(['payment' => $idPayment, 'totalPrice' => $sum, 'pixKey' => $pixKey]);
         
         } else if($data['payment_method'] == 'c'){
 
             return view('user.paymentCardOrder')->with(['payment' => $idPayment]);
         } else {
 
-            $order = Order::create([
-                'date_order_closure' => now(),
-            ]);
-
-            return view('home');
+            return view('user.orderSuccessfullySent');
         }
         
     }
@@ -106,54 +101,21 @@ use App\Http\Requests\OrderPayment;
         return $pixKey;
     }
 
-    public function generateQrCode()
-    {
-    $text = 'Hello, World!'; // Texto para o qual você deseja gerar o QR code
+    public function store(){
 
-    $data = 'data:image/png;base64,'.base64_encode($this->generateQrCodeImage($text));
+        $sessionId = Auth::id();
 
-    return response()->json(['qrcode' => $data]);
-    }
+        $client = Client::findByUser($sessionId);
 
-    private function generateQrCodeImage($text)
-    {
-    // Definir o tamanho do QR code
-    $size = 300;
+        $bag = Bag::findOpenBagByClient($client->id);
 
-    // Criar uma imagem em branco
-    $image = imagecreatetruecolor($size, $size);
+        $stockItems = StockItem::where('id_bag', true)->get();
 
-    // Definir as cores do QR code (preto e branco)
-    $black = imagecolorallocate($image, 0, 0, 0);
-    $white = imagecolorallocate($image, 255, 255, 255);
+        $order = Order::create([
+            'date_order_closure' => now(),
+            'bag' => $bag->id,
+        ]);
 
-    // Preencher a imagem com a cor branca
-    imagefilledrectangle($image, 0, 0, $size, $size, $white);
-
-    // Converter o texto para dados binários
-    $data = utf8_encode($text);
-
-    // Gerar o QR code manualmente
-    $rows = str_split($data, 3);
-    foreach ($rows as $rowIndex => $row) {
-        $columns = str_split($row, 1);
-        foreach ($columns as $columnIndex => $column) {
-            if ($column === '1') {
-                $x1 = $columnIndex * ($size / count($columns));
-                $y1 = $rowIndex * ($size / count($rows));
-                $x2 = $x1 + ($size / count($columns));
-                $y2 = $y1 + ($size / count($rows));
-                imagefilledrectangle($image, $x1, $y1, $x2, $y2, $black);
-            }
-        }
-    }
-
-    // Renderizar a imagem como um PNG e retornar os dados binários
-    ob_start();
-    imagepng($image);
-    $data = ob_get_contents();
-    ob_end_clean();
-
-    return $data;
+        //return redirect()->route('user.order.payment.message');
     }
 }
