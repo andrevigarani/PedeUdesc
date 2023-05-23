@@ -34,8 +34,7 @@ class Bag extends Model
     {
         $bag = self::where('id_client', $id)->first();
 
-        if (!is_null($bag)) {
-            dd($bag->order()->exists());
+        if (!is_null($bag) && !$bag->order()->exists()) {
             return $bag;
         }
 
