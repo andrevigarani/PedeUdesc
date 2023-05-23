@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>PedeUdesc</title>
+    <title>PEDE.UDESC</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -57,10 +57,10 @@
                         </li>
                         @endif
                         @else
+                        <li><a href=""><img src="{{ asset('images/admin_icon.png')}}" style="width: 65px;"></a></li>
+        
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre style="font-size: 16px;">
-                                <!-- <img src="images/icone_sacola_home.png" style="height: 50px;">
-                                <img src="images/icone_pessoa_home.png" style="height: 50px;margin-right: 5px;"> -->
                                 {{ Auth::user()->name }}
                             </a>
 
