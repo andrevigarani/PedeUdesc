@@ -3,13 +3,65 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Client;
+use App\Models\Product;
+use App\Models\StockItem;
+use App\Models\Bag;
+use App\Models\Payment;
+use App\Http\Requests\OrderPayment;
 
     class OrderController extends Controller
     {
 
     public function listProduct(){
-        return view('user.makeOrder');
+
+        $sessionId = Auth::id();
+
+        $client = Client::findByUser($sessionId);
+
+        $bag = Bag::findOpenBagByClient($client->id);
+
+        // Recuperar todas as bags do cliente
+        $bags = $client->bags;
+
+        $stockItems = StockItem::where('id_bag', true)->get();
+
+        $sum = 0;
+
+        foreach ($stockItems as $stockItem) {
+            $product = $stockItem->product;
+
+            if ($product) {
+                $price = $product->price;
+                $sum += $price;
+            }
+        }
+
+        return view('user.makeOrder')->with(['stockItems' => $stockItems, 'totalPrice' => $sum]);
     } 
+
+    public function orderPayment(OrderPayment $orderPayment){
+
+        $data = $orderPayment->all();
+
+        $idPayment = Payment::where('payment_type', $data['payment_method'])->first();
+
+        if($data->payment_method == 'p'){
+            return view('user.paymentPixOrder')->with(['payment' => $idPayment]);
+        } else if($data->payment_method == 'c'){
+            return view('user.paymentCardOrder')->with(['payment' => $idPayment]);
+        } else {
+
+            $order = Order::create([
+                'date_order_closure' => now(),
+            ]);
+
+            return view('home');
+        }
+
+        
+    }
 
     public function generateQrCode()
     {

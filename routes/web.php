@@ -30,4 +30,4 @@ Route::get('/home', [App\Http\Controllers\ProductController::class, 'showHome'])
 Route::get('/bag/add/{id}', [BagController::class, 'addProduct'])->name('user.add.bag');
 Route::get('/bag', [BagController::class, 'showBag'])->name('user.show.bag');
 Route::get('/order', [OrderController::class, 'listProduct'])->name('user.order');
-Route::post('/order/payment', [OrderController::class, 'orderPayment'])->name('user.order.payment');
+Route::get('/order/payment', [OrderController::class, 'orderPayment'])->name('user.order.payment');
