@@ -10,7 +10,9 @@ use App\Models\StockItem;
 use App\Models\Bag;
 use App\Models\Payment;
 use App\Http\Requests\OrderPayment;
+use App\Http\Requests\PaymentCard;
 use App\Models\Order;
+use App\Models\Card;
 
     class OrderController extends Controller
     {
@@ -22,15 +24,10 @@ use App\Models\Order;
     public function listProduct(){
 
         $sessionId = Auth::id();
-
         $client = Client::findByUser($sessionId);
-
         $bag = Bag::findOpenBagByClient($client->id);
-
-        $bags = $client->bags;
-
+        $bags = $client->bags; //testar para remover
         $stockItems = StockItem::where('id_bag', true)->get();
-
         $sum = 0;
 
         foreach ($stockItems as $stockItem) {
@@ -48,19 +45,12 @@ use App\Models\Order;
     public function orderPayment(OrderPayment $orderPayment){
 
         $data = $orderPayment->all();
-
         $idPayment = Payment::where('payment_type', $data['payment_method'])->first();
-
         $sessionId = Auth::id();
-
         $client = Client::findByUser($sessionId);
-
         $bag = Bag::findOpenBagByClient($client->id);
-
         $bags = $client->bags;
-
         $stockItems = StockItem::where('id_bag', true)->get();
-        
         $sum = 0;
 
         foreach ($stockItems as $stockItem) {
@@ -81,7 +71,10 @@ use App\Models\Order;
         } else if($data['payment_method'] == 'c'){
 
             return view('user.paymentCardOrder')->with(['payment' => $idPayment]);
+
         } else {
+
+            $this->store();
 
             return view('user.orderSuccessfullySent');
         }
@@ -104,11 +97,8 @@ use App\Models\Order;
     public function store(){
 
         $sessionId = Auth::id();
-
         $client = Client::findByUser($sessionId);
-
         $bag = Bag::findOpenBagByClient($client->id);
-
         $stockItems = StockItem::where('id_bag', true)->get();
 
         $order = Order::create([
@@ -122,5 +112,26 @@ use App\Models\Order;
 
     public function message(){
         return view('user.orderSuccessfullySent');
+    }
+
+    public function cardStore(PaymentCard $paymentCard){
+
+        $data = $paymentCard->all();
+        $sessionId = Auth::id();
+        $client = Client::findByUser($sessionId);
+        $bag = Bag::findOpenBagByClient($client->id);
+        $stockItems = StockItem::where('id_bag', true)->get();
+
+        $card = Card::create([
+            'card_number' => $data['card_number'],
+            'cpf_client' => $data['cpf_client'],
+            'card_expire_date' => $data['card_expire_date'],
+            'cvv_card' => $data['cvv_card'],
+            'id_client' => $client->id,
+        ]);
+
+        $this->store();
+
+        return redirect()->route('user.order.payment.message');
     }
 }

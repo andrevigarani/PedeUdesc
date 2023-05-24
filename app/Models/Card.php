@@ -18,6 +18,7 @@ class Card extends Model
         'cpf_client',
         'card_expire_date',
         'cvv_card',
+        'id_client',
     ];
 
     public function payment(): hasOne{

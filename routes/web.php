@@ -31,6 +31,7 @@ Route::get('/bag/add/{id}', [BagController::class, 'addProduct'])->name('user.ad
 Route::get('/bag', [BagController::class, 'showBag'])->name('user.show.bag');
 Route::get('/order', [OrderController::class, 'listProduct'])->name('user.order');
 Route::get('/order/payment', [OrderController::class, 'orderPayment'])->name('user.order.payment');
-Route::get('/order/payment/pix', [OrderController::class, 'createQrCode'])->name('user.order.payment.pix');
+//Route::get('/order/payment/pix', [OrderController::class, 'createQrCode'])->name('user.order.payment.pix');
 Route::post('/order/payment/store', [OrderController::class, 'store'])->name('user.order.payment.store');
 Route::get('/order/payment/message', [OrderController::class, 'message'])->name('user.order.payment.message');
+Route::post('/order/payment/card', [OrderController::class, 'cardStore'])->name('user.order.payment.card');
