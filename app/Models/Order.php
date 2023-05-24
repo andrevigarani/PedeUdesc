@@ -15,5 +15,15 @@ class Order extends Model
 
     protected $fillable = [
         'date_order_closure',
+        'id_bag',
+        'id_payment'
     ];
+
+    public function bag(): BelongsTo{
+        return $this->belongsTo(Bag::class, 'id_bag');
+    }
+
+    public function payment(): BelongsTo{
+        return $this->belongsTo(Payment::class, 'id_payment');
+    }
 }

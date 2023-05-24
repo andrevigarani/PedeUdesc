@@ -19,4 +19,12 @@ class Card extends Model
         'card_expire_date',
         'cvv_card',
     ];
+
+    public function payment(): hasOne{
+        return $this->hasMany(Payment::class, 'id_payment');
+    }
+
+    public function client(): hasOne{
+        return $this->belongsTo(Client::class, 'id_client');
+    }
 }

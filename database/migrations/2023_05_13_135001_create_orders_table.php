@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->foreignId('id_bag')->constrained('bag');
-            $table->foreignId('id_payment')->constrained('payment'); //porque id de pagamento?
+            $table->foreignId('id_payment')->constrained('payment'); 
             $table->date('date_order_closure');
         });
     }

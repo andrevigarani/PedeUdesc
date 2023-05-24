@@ -113,9 +113,14 @@ use App\Models\Order;
 
         $order = Order::create([
             'date_order_closure' => now(),
-            'bag' => $bag->id,
+            'id_bag' => $bag->id,
+            'id_payment' => 2,
         ]);
 
-        //return redirect()->route('user.order.payment.message');
+        return redirect()->route('user.order.payment.message');
+    }
+
+    public function message(){
+        return view('user.orderSuccessfullySent');
     }
 }

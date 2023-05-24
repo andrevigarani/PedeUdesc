@@ -16,4 +16,8 @@ class Payment extends Model
     protected $fillable = [
         'payment_type',
     ];
+
+    public function order(): BelongsTo{
+        return $this->hasMany(Order::class, 'id_order');
+    }
 }
