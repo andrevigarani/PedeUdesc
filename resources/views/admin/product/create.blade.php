@@ -13,10 +13,10 @@
 
                 <div class="form-group">
                     <div class="radio-section">
-                        <input type="radio" id="comida" name="tipo" value="comida">
+                        <input type="radio" id="comida" name="type" value="c">
                         <label for="comida" style="margin-left: 5px; font-size: 15px;">Comida</label>
 
-                        <input type="radio" id="bebida" name="tipo" value="bebida" style="margin-left: 5px;">
+                        <input type="radio" id="bebida" name="type" value="b" style="margin-left: 5px;">
                         <label for="bebida" style="margin-left: 5px; font-size: 15px;">Bebida</label>
                     </div>
                 </div>

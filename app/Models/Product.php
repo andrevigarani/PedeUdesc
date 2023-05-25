@@ -20,13 +20,15 @@ class Product extends Model
         'name',
         'price',
         'quantity',
+        'type',
         'img'
     ];
 
     /**
      * @return BelongsTo
      */
-    public function stockItem(){
+    public function stockItem()
+    {
         return $this->hasMany(StockItem::class);
     }
 }

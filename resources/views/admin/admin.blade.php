@@ -8,8 +8,8 @@
 <link rel="stylesheet" href="{{ asset('css/custom-styles.css') }}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
-<div class="container"> 
-<div class="row justify-content-center">
+<div class="container">
+    <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card" style="height: 100px; margin-top: 50px;">
                 <img src="{{ asset('images/alunos_index.png')}}" alt="Alunos na cantina UDESC" style="width: 100%;">
@@ -36,17 +36,20 @@
     <a href="{{ route('admin.product.create')}}" class="btn btn-primary" style="color: black;text-align: center; margin-top: 5px; outline: none; border: none; position: absolute; margin-top:-100px; margin-left: 1100px;text-decoration: none; color: white;
      background-color:#72DB8F; height:30px; font-size: 14px;">+ Adicionar novo produto</a>
 
-    <div class="food-carousel">
-        @foreach ($products as $product)
-        <div style="text-align: center;">
-            <img src="data:image/png;base64, {{ $product->img }}" alt="{{ $product->name }}" style="height: 320px; margin-left:50px;">
 
-            <a href="{{ route('admin.product.edit', $product->id) }}" class="btn btn-primary" style="color: white;text-align: center; margin-top: 5px; background-color: #72DB8F;outline: none; border: none; position: absolute; margin-top:-310px; margin-left: -145px;
+    <div class="food-carousel">
+        @foreach ($foods as $food)
+        <div style="text-align: center;">
+            <img src="data:image/png;base64, {{ $food->img }}" alt="{{ $food->name }}"
+                style="height: 320px; margin-left:50px;">
+
+            <a href="{{ route('admin.product.edit', $food->id) }}" class="btn btn-primary" style="color: white;text-align: center; margin-top: 5px; background-color: #72DB8F;outline: none; border: none; position: absolute; margin-top:-310px; margin-left: -145px;
                 height:28px; font-size: 13px;">Editar produto</a>
 
-            <h4 style="font-size: 25px;">{{ $product->name }}</h4>
-            <p style="font-size: 18px;background-color: #72DB8F; padding: 5px; display: inline-block; border-radius: 50px;">
-                R${{ $product->price }}
+            <h4 style="font-size: 25px;">{{ $food->name }}</h4>
+            <p
+                style="font-size: 18px;background-color: #72DB8F; padding: 5px; display: inline-block; border-radius: 50px;">
+                R${{ $food->price }}
             </p>
         </div>
         @endforeach
@@ -55,9 +58,25 @@
     <div style="margin-top: 200px; text-align: center;">
         <h1 class="our_text" style="font-size: 40px;">BEBIDAS</h1>
         <p class="ipsum_text" style="font-size: 20px;">Desfrute as diferentes opções</p>
+        <div class="food-carousel">
+
+            @foreach ($drinks as $drink)
+            <div style="text-align: center;">
+                <img src="data:image/png;base64, {{ $drink->img }}" alt="{{ $drink->name }}"
+                    style="height: 320px; margin-left:50px;">
+
+                <a href="{{ route('admin.product.edit', $drink->id) }}" class="btn btn-primary" style="color: white;text-align: center; margin-top: 5px; background-color: #72DB8F;outline: none; border: none; position: absolute; margin-top:-310px; margin-left: -145px;
+                height:28px; font-size: 13px;">Editar produto</a>
+
+                <h4 style="font-size: 25px;">{{ $drink->name }}</h4>
+                <p
+                    style="font-size: 18px;background-color: #72DB8F; padding: 5px; display: inline-block; border-radius: 50px;">
+                    R${{ $drink->price }}
+                </p>
+            </div>
+            @endforeach
+        </div>
     </div>
-
-
 
 </div>
 
@@ -72,29 +91,29 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{ asset('js/slick.min.js') }}"></script>
     <script>
-        $(document).ready(function() {
-            $('.food-carousel').slick({
-                dots: true,
-                autoplay: true,
-                arrows: true,
-                slidesToShow: 3,
-                slidesToScroll: 1,
-                responsive: [{
-                        breakpoint: 768,
-                        settings: {
-                            slidesToShow: 2,
-                            slidesToScroll: 1
-                        }
-                    },
-                    {
-                        breakpoint: 576,
-                        settings: {
-                            slidesToShow: 1,
-                            slidesToScroll: 1
-                        }
+    $(document).ready(function() {
+        $('.food-carousel').slick({
+            dots: true,
+            autoplay: true,
+            arrows: true,
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            responsive: [{
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1
                     }
-                ]
-            });
+                },
+                {
+                    breakpoint: 576,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1
+                    }
+                }
+            ]
         });
+    });
     </script>
     @endpush

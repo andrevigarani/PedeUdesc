@@ -6,6 +6,7 @@ use App\Http\Requests\StoreProduct;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\StockItem;
+use Illuminate\Support\Facades\Cookie;
 
 class ProductController extends Controller
 {
@@ -19,7 +20,7 @@ class ProductController extends Controller
 
         $product = Product::create($data);
 
-        for($i = 0; $i < $data['quantity']; $i++){
+        for ($i = 0; $i < $data['quantity']; $i++) {
             StockItem::create([
                 'id_product' => $product->id
             ]);
@@ -52,6 +53,7 @@ class ProductController extends Controller
 
         $product->name = $request->input('name');
         $product->price = $request->input('price');
+        $product->type = $request->input('type');
         $product->quantity = $request->input('quantity');
 
         $product->save();
@@ -78,13 +80,17 @@ class ProductController extends Controller
 
     public function showHome()
     {
-        $products = Product::all();
-        return view('home', ['products' => $products]);
+        $foods = Product::all()->where('type', 'c');
+        $drinks = Product::all()->where('type', 'b');
+
+        return view('home', ['foods' => $foods], ['drinks' => $drinks]);
     }
 
     public function showAdminHome()
     {
-        $products = Product::all();
-        return view('admin.admin', ['products' => $products]);
+        $foods = Product::all()->where('type', 'c');
+        $drinks = Product::all()->where('type', 'b');
+
+        return view('admin.admin', ['foods' => $foods], ['drinks' => $drinks]);
     }
 }

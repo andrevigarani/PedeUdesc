@@ -14,9 +14,10 @@ return new class extends Migration
         $this->down();
         Schema::create('product', function (Blueprint $table) {
             $table->id();
-            $table->string("name",250)->nullable(false);
+            $table->string("name", 250)->nullable(false);
             $table->decimal("price")->nullable(false);
             $table->integer("quantity")->nullable(false)->default(0);
+            $table->char("type", 1)->nullable(false);
             $table->text("img");
         });
     }
