@@ -2,15 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\OrderController;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Client;
+use App\Models\StockItem;
+use App\Models\Bag;
+use App\Models\Payment;
+use App\Http\Requests\OrderPayment;
+use App\Http\Requests\PaymentCard;
+use App\Models\Card;
+use Illuminate\Support\Facades\App;
 
 class PaymentController extends Controller
 {
-    public function orderPayment(OrderPayment $orderPayment){
+    public function orderPayment(OrderPayment $orderPayment)
+    {
 
         $data = $orderPayment->all();
-        $idPayment = Payment::where('payment_type', $data['payment_method'])->first();
+        $idPayment = $data['payment_method'];
         $sessionId = Auth::id();
         $client = Client::findByUser($sessionId);
         $bag = Bag::findOpenBagByClient($client->id);
@@ -27,31 +36,27 @@ class PaymentController extends Controller
             }
         }
 
-        if($data['payment_method'] == 'p'){
-
+        if ($data['payment_method'] == "2") {
             $pixKey = $this->generatePixKey();
 
-            return view('user.paymentPixOrder')->with(['payment' => $idPayment, 'totalPrice' => $sum, 'pixKey' => $pixKey]);
-        
-        } else if($data['payment_method'] == 'c'){
+            return view('user.paymentPixOrder')->with(['payment' => $idPayment, 'totalPrice' => $sum, 'pixKey' => $pixKey,]);
+        } else if ($data['payment_method'] == "1") {
 
             return view('user.paymentCardOrder')->with(['payment' => $idPayment]);
-
         } else {
 
             $orderController = new OrderController();
-            
-            $orderController->store();
+
+            $orderController->store($idPayment);
 
             return view('user.orderSuccessfullySent');
         }
-        
     }
 
     public function generatePixKey()
     {
-        $length = 20; 
-        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'; 
+        $length = 20;
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $pixKey = '';
 
         for ($i = 0; $i < $length; $i++) {
@@ -61,7 +66,8 @@ class PaymentController extends Controller
         return $pixKey;
     }
 
-    public function cardStore(PaymentCard $paymentCard){
+    public function cardStore(PaymentCard $paymentCard)
+    {
 
         $data = $paymentCard->all();
         $sessionId = Auth::id();
@@ -77,7 +83,9 @@ class PaymentController extends Controller
             'id_client' => $client->id,
         ]);
 
-        $this->store();
+        $orderController = new OrderController();
+
+        $orderController->store("1");
 
         return redirect()->route('user.order.payment.message');
     }
