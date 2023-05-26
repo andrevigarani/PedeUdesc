@@ -39,7 +39,7 @@ class PaymentController extends Controller
         if ($data['payment_method'] == "2") {
             $pixKey = $this->generatePixKey();
 
-            return view('user.paymentPixOrder')->with(['payment' => $idPayment, 'totalPrice' => $sum, 'pixKey' => $pixKey,]);
+            return view('user.paymentPixOrder')->with(['idPayment' => $idPayment, 'totalPrice' => $sum, 'pixKey' => $pixKey,]);
         } else if ($data['payment_method'] == "1") {
 
             return view('user.paymentCardOrder')->with(['payment' => $idPayment]);
@@ -84,9 +84,15 @@ class PaymentController extends Controller
         ]);
 
         $orderController = new OrderController();
-
         $orderController->store("1");
 
+        return redirect()->route('user.order.payment.message');
+    }
+
+    public function pixStore()
+    {
+        $orderController = new OrderController();
+        $orderController->store("2");
         return redirect()->route('user.order.payment.message');
     }
 }

@@ -27,11 +27,14 @@
                     @foreach($stockItems as $stockItem)
                     <tr>
                         <td style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd;">
-                            {{ $stockItem->product->name }}</td>
+                            {{ $stockItem->product->name }}
+                        </td>
                         <td style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd;">
-                            {{ $stockItem->product->quantity }}</td>
+                            {{ $stockItem->product->quantity }}
+                        </td>
                         <td style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd;">
-                            {{ $stockItem->product->price }}</td>
+                            {{ $stockItem->product->price }}
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -70,6 +73,9 @@
     </div>
 </div>
 
-
-
+<div class="copyright_section">
+    <div class="container" style="text-align: center; margin-top:3cm;">
+        <p class="copyright_text">2023 All Rights Reserved. Design by MN Sistemas</a></p>
+    </div>
+</div>
 @endsection

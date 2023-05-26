@@ -45,7 +45,6 @@ class OrderController extends Controller
 
     public function store($idPayment)
     {
-
         $sessionId = Auth::id();
         $client = Client::findByUser($sessionId);
         $bag = Bag::findOpenBagByClient($client->id);

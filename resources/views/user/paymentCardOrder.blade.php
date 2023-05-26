@@ -5,14 +5,13 @@
 <br>
 <div class="contact_section layout_padding">
     <div class="contact_section layout_padding">
-        <a href="{{ route('home') }}" class="btn btn-primary"
-            style="margin-left: 0px; text-decoration: none; color: white; background-color:#72DB8F; outline: none; border: none;">Voltar</a><br>
+        <a href="{{ route('home') }}" class="btn btn-primary" style="margin-left: 0px; text-decoration: none; color: white; background-color:#72DB8F; outline: none; border: none;">Voltar</a><br>
 
-            <form enctype="multipart/form-data" method="post" action="{{ route('user.order.payment.card') }}">
-        @csrf
-        <div class="row">
+        <form enctype="multipart/form-data" method="post" action="{{ route('user.order.payment.card') }}">
+            @csrf
+            <div class="row">
 
-            <h1 class="contact_text" style="color: black; margin-top:30px;"><b>Cadastrar Cartão</b></h1>
+                <h1 class="contact_text" style="color: black; margin-top:30px;"><b>Cadastrar Cartão</b></h1>
                 <center>
                     <input type="hidden" name="c" value="c">
 
@@ -26,10 +25,16 @@
 
                     <button type="submit" class="btn btn-primary" style="text-align: center; background-color: #72DB8F;outline: none; border: none;
         font-size: 18px;">Confirmar Pedido</button>
-            </center>
-        </div>
-    </form>
+                </center>
+            </div>
+        </form>
 
+    </div>
+</div>
+
+<div class="copyright_section">
+    <div class="container" style="text-align: center; margin-top:3cm;">
+        <p class="copyright_text">2023 All Rights Reserved. Design by MN Sistemas</a></p>
     </div>
 </div>
 
