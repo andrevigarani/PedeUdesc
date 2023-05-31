@@ -13,12 +13,11 @@
     <link rel="icon" href="images/fevicon.png" />
 </head>
 
-<body
-    style="background-image: url('images/banner-bg.png'); width: 100%; float: left; height: auto; padding-bottom: 80px; background-size: 100%;">
+<body style="background-image: url('images/banner-bg.png'); background-size: cover;">
 
     <div class="banner_section layout_padding">
-        <div class="container" style="margin-top: 3cm; align-items: center; margin-right: 3cm;">
-            <div class="col-md-5 offset-md-4 bg-white" style="height: 430px;"><br><br>
+        <div class="container" style="margin-top: 3cm; align-items: center;">
+            <div class="bg-white" style="height: 430px; margin: 0 auto; width: 530px;"><br><br>
                 <center><img src="images/logo.png"><br></center>
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
@@ -82,9 +81,8 @@
                         </div>
 
                         <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary"
-                                    style="text-align: center; background-color: #72DB8F;outline: none; border: none; font-size: 18px;">
+                            <div style="width: 100%">
+                                <button type="submit" class="btn btn-primary" style="text-align: center; background-color: #72DB8F;outline: none; border: none; font-size: 18px; margin: 0 auto; display: block;">
                                     {{ __('Register') }}
                                 </button>
                             </div>

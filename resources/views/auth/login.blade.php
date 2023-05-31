@@ -67,8 +67,7 @@
 
                         <div class="row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary" style="text-align: center; margin-left:1.5cm; background-color: #72DB8F;outline: none; border: none;
-        font-size: 18px;">
+                                <button type="submit" class="btn btn-primary" style="text-align: center; margin-left:1.5cm; background-color: #72DB8F;outline: none; border: none;  margin: 0 auto; display: block; font-size: 18px;">
                                     {{ __('Login') }}
                                 </button>
 
