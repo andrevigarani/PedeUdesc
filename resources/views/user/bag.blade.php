@@ -44,9 +44,9 @@
                                 </tfoot>
                             </table>
                         @endif
-
-                        <center><a href="{{ route('user.order') }}" class="btn btn-primary"
-                                   style="margin-left: 0px; text-decoration: none; color: white; background-color:#72DB8F; outline: none; border: none;">Realizar Pedido</a></center>
+                        <div class="text-center">
+                            <a href="{{ route('user.order') }}" class="btn btn-success btn-outline-light m-0">Realizar Pedido</a>
+                        </div>
                     </div>
                 </div>
             </div>

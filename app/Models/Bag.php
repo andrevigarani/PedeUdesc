@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\DB;
 
 class Bag extends Model
 {
@@ -41,5 +42,13 @@ class Bag extends Model
         }
 
         return null;
+    }
+
+    public function getBagCheckout()
+    {
+        return DB::table('stock_item')->select([DB::raw('product.name as product_name'), DB::raw('COUNT(*) as quantity'), DB::raw('SUM(product.price) as sub_total')])
+                                           ->where('id_bag', '=', $this->id)
+                                           ->leftJoin('product', 'id_product', '=', 'product.id')
+                                           ->groupBy(['id_product', 'product.name'])->get();
     }
 }
