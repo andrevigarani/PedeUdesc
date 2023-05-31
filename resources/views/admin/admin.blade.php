@@ -41,7 +41,7 @@
         @foreach ($foods as $food)
         <div style="text-align: center;">
             <img src="data:image/png;base64, {{ $food->img }}" alt="{{ $food->name }}"
-                style="height: 320px; margin-left:50px;">
+                style="width: 100%;">
 
             <a href="{{ route('admin.product.edit', $food->id) }}" class="btn btn-primary" style="color: white;text-align: center; margin-top: 5px; background-color: #72DB8F;outline: none; border: none; position: absolute; margin-top:-310px; margin-left: -145px;
                 height:28px; font-size: 13px;">Editar produto</a>
@@ -63,7 +63,7 @@
             @foreach ($drinks as $drink)
             <div style="text-align: center;">
                 <img src="data:image/png;base64, {{ $drink->img }}" alt="{{ $drink->name }}"
-                    style="height: 320px; margin-left:50px;">
+                    style="width: 100%;">
 
                 <a href="{{ route('admin.product.edit', $drink->id) }}" class="btn btn-primary" style="color: white;text-align: center; margin-top: 5px; background-color: #72DB8F;outline: none; border: none; position: absolute; margin-top:-310px; margin-left: -145px;
                 height:28px; font-size: 13px;">Editar produto</a>

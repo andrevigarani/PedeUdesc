@@ -37,7 +37,7 @@
         @foreach ($foods as $food)
         <div style="text-align: center;">
             <img src="data:image/png;base64, {{ $food->img }}" alt="{{ $food->name }}"
-                style="height: 320px; margin-left:50px;">
+                style="width: 100%;">
 
             <a href="{{ route('user.add.bag', ['id' => $food['id']]) }}" class="btn btn-primary" style="color:
             white;text-align: center; margin-top: 5px; background-color: #72DB8F;outline: none; border: none; position:
@@ -62,7 +62,7 @@
         @foreach ($drinks as $drink)
         <div style="text-align: center;">
             <img src="data:image/png;base64, {{ $drink->img }}" alt="{{ $drink->name }}"
-                style="height: 320px; margin-left:50px;">
+                style="width: 100%;">
 
             <a href="{{ route('user.add.bag', ['id' => $drink['id']]) }}" class="btn btn-primary" style="color:
             white;text-align: center; margin-top: 5px; background-color: #72DB8F;outline: none; border: none; position:
