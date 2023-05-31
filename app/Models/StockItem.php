@@ -29,6 +29,11 @@ class StockItem extends Model
         return $this->belongsTo(Product::class,'id_product');
     }
 
+    public function countItems() : int
+    {
+        return self::where([ 'id_bag' => $this->bag->id, 'id_product' => $this->product->id ] )->count();
+    }
+
     public static function findByProduct($id)
     {
         $stockItem = self::where('id_product', $id)->whereNull('id_bag')->first();

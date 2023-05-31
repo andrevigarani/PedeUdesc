@@ -4,38 +4,50 @@
 
     <div class="contact_section layout_padding">
         <div class="contact_section layout_padding">
-            <div class="row">
-                <div class="col-md-6" style="margin-top: 50px; margin-left:150px;">
-                    <a href="{{ route('home') }}" class="btn btn-primary"
-                       style="margin-left: 0px; text-decoration: none; color: white; background-color:#72DB8F; outline: none; border: none;">Voltar</a>
+            <div class="container container-sm pt-5">
+                <div class="row">
+                    <div>
+                        <a href="{{ route('home') }}" class="btn btn-primary"
+                           style="margin-left: 0px; text-decoration: none; color: white; background-color:#72DB8F; outline: none; border: none;">Voltar</a>
 
 
-                    <h1 class="contact_text" style="color: black; margin-top:30px;"><b>Sacola de Produtos</b></h1>
+                        <h1 class="contact_text" style="color: black; margin-top:30px;"><b>Sacola de Produtos</b></h1>
 
-                    @if($stockItems->isEmpty())
-                        <p>Sua sacola de compras está vazia.</p>
+                        @if($bagItems->isEmpty())
+                            <p>Sua sacola de compras está vazia.</p>
 
-                    @else
-                        <table>
-                            <thead>
-                            <tr>
-                                <th>Produto</th>
-                                <th>Quantidade</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($stockItems as $stockItem)
+                        @else
+                            <table class="table table-striped">
+                                <thead>
                                 <tr>
-                                    <td>{{ $stockItem->product->name }}</td>
-                                    <td>{{ $stockItem->quantity }}</td>
+                                    <th scope="col">Produto</th>
+                                    <th scope="col" class="text-center">Quantidade</th>
+                                    <th scope="col" class="text-center">Valor</th>
                                 </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                    @endif
+                                </thead>
+                                <tbody>
+                                @php($total = 0)
+                                @foreach($bagItems as $bagItem)
+                                    <tr>
+                                        <td>{{ $bagItem->product_name }}</td>
+                                        <td class="text-center">{{ $bagItem->quantity }}</td>
+                                        <td class="text-center">R$ {{ $bagItem->sub_total }}</td>
+                                        @php($total += $bagItem->sub_total)
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                                <tfoot>
+                                    <tr class="bg-secondary bg-opacity-50">
+                                        <td>Total</td>
+                                        <td class="text-center" colspan="2">R$ {{ $total }}</td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        @endif
 
-                    <center><a href="{{ route('user.order') }}" class="btn btn-primary"
-                               style="margin-left: 0px; text-decoration: none; color: white; background-color:#72DB8F; outline: none; border: none;">Realizar Pedido</a></center>
+                        <center><a href="{{ route('user.order') }}" class="btn btn-primary"
+                                   style="margin-left: 0px; text-decoration: none; color: white; background-color:#72DB8F; outline: none; border: none;">Realizar Pedido</a></center>
+                    </div>
                 </div>
             </div>
         </div>
