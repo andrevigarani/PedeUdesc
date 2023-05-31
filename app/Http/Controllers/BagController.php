@@ -41,10 +41,6 @@ class BagController extends Controller
     {
         $client = Client::findByUser(Auth::id());
         $bag = Bag::findOpenBagByClient($client->id);
-        $bagItems = DB::table('stock_item')->select([DB::raw('product.name as product_name'), DB::raw('COUNT(*) as quantity'), DB::raw('SUM(product.price) as sub_total')])
-                                                ->where('id_bag', '=', $bag->id)
-                                                ->leftJoin('product', 'id_product', '=', 'product.id')
-                                                ->groupBy(['id_product', 'product.name'])->get();
-        return view('user.bag')->with(['bagItems' => $bagItems]);
+        return view('user.bag')->with(['bagItems' => $bag->getBagCheckout()]);
     }
 }
