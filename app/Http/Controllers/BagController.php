@@ -19,10 +19,7 @@ class BagController extends Controller
 
         $stockItem = StockItem::findByProduct($id);
 
-        $sessionId = Auth::id();
-
-        $client = Client::findByUser($sessionId);
-
+        $client = Client::findByUser(Auth::id());
         $bag = Bag::findOpenBagByClient($client->id);
 
         if(is_null($bag)){
@@ -31,7 +28,6 @@ class BagController extends Controller
         }
 
         $stockItem->bag()->associate($bag);
-
         $stockItem->save();
 
         return redirect()->route('home');
@@ -42,5 +38,12 @@ class BagController extends Controller
         $client = Client::findByUser(Auth::id());
         $bag = Bag::findOpenBagByClient($client->id);
         return view('user.bag')->with(['bagItems' => $bag->getBagCheckout()]);
+    }
+
+    public function updateBag(Request $request)
+    {
+        $data = $request->all();
+        dd($data);
+        return redirect()->route('user.show.bag');
     }
 }

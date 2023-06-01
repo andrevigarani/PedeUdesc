@@ -31,6 +31,7 @@ Auth::routes(['reset' => false]);
 Route::get('/home', [App\Http\Controllers\ProductController::class, 'showHome'])->name('home');
 Route::get('/bag/add/{id}', [BagController::class, 'addProduct'])->name('user.add.bag');
 Route::get('/bag', [BagController::class, 'showBag'])->name('user.show.bag');
+Route::post('/bag', [BagController::class, 'updateBag'])->name('user.update.bag');
 Route::get('/order', [OrderController::class, 'listProduct'])->name('user.order');
 Route::get('/order/payment', [PaymentController::class, 'orderPayment'])->name('user.order.payment');
 Route::post('/order/payment/pix/store', [PaymentController::class, 'pixStore'])->name('user.order.payment.pix');
