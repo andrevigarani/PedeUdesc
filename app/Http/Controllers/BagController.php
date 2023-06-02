@@ -42,8 +42,7 @@ class BagController extends Controller
 
     public function updateBag(Request $request)
     {
-        $data = $request->all();
-        dd($data);
+        dd($request->all());
         return redirect()->route('user.show.bag');
     }
 }

@@ -46,9 +46,15 @@ class Bag extends Model
 
     public function getBagCheckout()
     {
-        return DB::table('stock_item')->select([DB::raw('product.name as product_name'), DB::raw('COUNT(*) as quantity'), DB::raw('SUM(product.price) as sub_total')])
+        return DB::table('stock_item')->select([
+                                                DB::raw('product.img as product_image'),
+                                                DB::raw('product.id as product_id'),
+                                                DB::raw('product.name as product_name'),
+                                                DB::raw('COUNT(*) as quantity'),
+                                                DB::raw('SUM(product.price) as sub_total')
+                                            ])
                                            ->where('id_bag', '=', $this->id)
                                            ->leftJoin('product', 'id_product', '=', 'product.id')
-                                           ->groupBy(['id_product', 'product.name'])->get();
+                                           ->groupBy(['product.img', 'product.id', 'id_product', 'product.name'])->get();
     }
 }

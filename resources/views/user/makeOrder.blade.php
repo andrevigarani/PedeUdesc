@@ -39,7 +39,7 @@
                                 <tfoot>
                                 <tr class="bg-secondary bg-opacity-50">
                                     <td>Total</td>
-                                    <td class="text-center" colspan="2">R$ {{ $total }}</td>
+                                    <td class="text-center" colspan="2">R$ {{ number_format($total,2) }}</td>
                                 </tr>
                                 </tfoot>
                             </table>
