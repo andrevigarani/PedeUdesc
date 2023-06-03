@@ -33,7 +33,7 @@
                             <table style="display: none;">
                                 <tr>
                                     @foreach($bagItems as $bagItem)
-                                        <td><input type="number" id="formQuantityProduct{{$bagItem->product_id}}" value={{ $bagItem->quantity }}></td>
+                                        <td><input type="number" id="formQuantityProduct{{$bagItem->product_id}}" name="formQuantityProduct{{$bagItem->product_id}}" value={{ $bagItem->quantity }}></td>
                                     @endforeach
                                 </tr>
                             </table>

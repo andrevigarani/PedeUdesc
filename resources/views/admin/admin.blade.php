@@ -40,15 +40,13 @@
     <div class="food-carousel">
         @foreach ($foods as $food)
         <div style="text-align: center;">
-            <img src="data:image/png;base64, {{ $food->img }}" alt="{{ $food->name }}"
-                style="width: 100%;">
-
-            <a href="{{ route('admin.product.edit', $food->id) }}" class="btn btn-primary" style="color: white;text-align: center; margin-top: 5px; background-color: #72DB8F;outline: none; border: none; position: absolute; margin-top:-310px; margin-left: -145px;
-                height:28px; font-size: 13px;">Editar produto</a>
-
+            <div class="d-flex">
+                <img src="data:image/png;base64, {{ $food->img }}" alt="{{ $food->name }}" class="w-100"/>
+                <a href="{{ route('admin.product.edit', $food->id) }}" class="btn btn-success position-absolute m-3">Editar produto</a>
+            </div>
             <h4 style="font-size: 25px;">{{ $food->name }}</h4>
-            <p
-                style="font-size: 18px;background-color: #72DB8F; padding: 5px; display: inline-block; border-radius: 50px;">
+
+            <p class="btn btn-success py-2 px-3 rounded-4" style="font-size: large; cursor: unset;">
                 R${{ $food->price }}
             </p>
         </div>
@@ -62,15 +60,13 @@
 
             @foreach ($drinks as $drink)
             <div style="text-align: center;">
-                <img src="data:image/png;base64, {{ $drink->img }}" alt="{{ $drink->name }}"
-                    style="width: 100%;">
-
-                <a href="{{ route('admin.product.edit', $drink->id) }}" class="btn btn-primary" style="color: white;text-align: center; margin-top: 5px; background-color: #72DB8F;outline: none; border: none; position: absolute; margin-top:-310px; margin-left: -145px;
-                height:28px; font-size: 13px;">Editar produto</a>
-
+                <div class="d-flex">
+                    <img src="data:image/png;base64, {{ $drink->img }}" alt="{{ $drink->name }}" class="w-100"/>
+                    <a href="{{ route('admin.product.edit', $drink->id) }}" class="btn btn-success position-absolute m-3">Editar produto</a>
+                </div>
                 <h4 style="font-size: 25px;">{{ $drink->name }}</h4>
-                <p
-                    style="font-size: 18px;background-color: #72DB8F; padding: 5px; display: inline-block; border-radius: 50px;">
+
+                <p class="btn btn-success py-2 px-3 rounded-4" style="font-size: large; cursor: unset;">
                     R${{ $drink->price }}
                 </p>
             </div>

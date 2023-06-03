@@ -15,9 +15,10 @@ class OrderController extends Controller
 
         $client = Client::findByUser(Auth::id());
         $bag = Bag::findOpenBagByClient($client->id);
-
+        if ($bag->stockItem()->count() == 0) {
+            return redirect()->route('user.show.bag');
+        }
         return view('user.makeOrder')->with(['bagItems' => $bag->getBagCheckout()]);
-
     }
 
     public function store($idPayment)
