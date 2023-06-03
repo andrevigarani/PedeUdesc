@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
         DB::table('bag'       )->truncate();
         DB::table('stock_item')->truncate();
         foreach (Product::all() as $Product) {
-            for ($i = 0; $i <= $Product->quantity; $i++) {
+            for ($i = 1; $i <= $Product->quantity; $i++) {
                 $item = new StockItem();
                 $item->product()->associate($Product)->save();
             }

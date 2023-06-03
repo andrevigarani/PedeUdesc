@@ -19,8 +19,8 @@ class Bag extends Model
         'user',
     ];
 
-    public function stockItem(){
-        return $this->hasMany(StockItem::class, 'id_client');
+    public function stockItem() {
+        return $this->hasMany(StockItem::class, 'id_bag');
     }
 
     public function order(): BelongsTo{
@@ -31,6 +31,10 @@ class Bag extends Model
         return $this->hasOne(Client::class, 'id_client');
     }
 
+    /**
+     * @param $id
+     * @return null|Bag
+     */
     public static function findOpenBagByClient($id)
     {
         $bag = self::where('id_client', $id)->first();
