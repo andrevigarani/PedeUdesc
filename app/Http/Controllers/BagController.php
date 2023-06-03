@@ -49,7 +49,7 @@ class BagController extends Controller
         $bag = Bag::findOpenBagByClient($client->id);
         foreach ($fields as $name => $quantity) {
             $productId = preg_replace('/[^0-9]/', '', $name);
-            $items = StockItem::where('id_bag', $bag->id)->get();
+            $items = StockItem::where([['id_bag', $bag->id], ['id_product', $productId]])->get();
             if (sizeof($items) > $quantity) {
                 $amount = sizeof($items) - 1;
                 for ($i = sizeof($items) - $quantity; $i > 0; $i--) {
@@ -60,6 +60,9 @@ class BagController extends Controller
             } else if (sizeof($items) < $quantity) {
                 for ($i = $quantity - sizeof($items); $i > 0; $i--) {
                     $stockItem = StockItem::findByProduct($productId);
+                    if (!$stockItem) {
+                        break;
+                    }
                     $stockItem->bag()->associate($bag);
                     $stockItem->save();
                 }

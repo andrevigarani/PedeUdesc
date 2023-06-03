@@ -31,7 +31,11 @@ class Bag extends Model
         return $this->hasOne(Client::class, 'id_client');
     }
 
-    public static function findOpenBagByClient($id): Bag
+    /**
+     * @param $id
+     * @return null|Bag
+     */
+    public static function findOpenBagByClient($id)
     {
         $bag = self::where('id_client', $id)->first();
 
