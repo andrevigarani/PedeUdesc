@@ -88,4 +88,10 @@
             </div>
         </div>
     </div>
+
+<div class="copyright_section">
+    <div class="container" style="text-align: center; margin-top: 6.5cm;">
+        <p class="copyright_text">2023 All Rights Reserved. Design by MN Sistemas</a></p>
+    </div>
+</div>
 @endsection

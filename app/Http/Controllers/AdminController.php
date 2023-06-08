@@ -12,9 +12,9 @@ class AdminController extends Controller
         return view('admin');
     }
 
-    // public function listOrders()
-    // {
-    //     $orders = Order::all();
-    //     return view('admin.order.receivedOrders', ['orders' => $orders]);
-    // }
+    public function listOrders()
+    {
+         $orders = Order::all();
+         return view('admin.order.receivedOrders', ['orders' => $orders]);
+    }
 }

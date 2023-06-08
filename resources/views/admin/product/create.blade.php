@@ -32,7 +32,7 @@
                 </div>
 
                 <div class="col-md-4 row align-items-center">
-                    <input type="file">
+                    <input type="file" class="" name="img">
                 </div>
             </div>
 
@@ -47,5 +47,6 @@
     <div class="container" style="text-align: center; margin-top: 6.5cm;">
         <p class="copyright_text">2023 All Rights Reserved. Design by MN Sistemas</a></p>
     </div>
+</div>
 
     @endsection

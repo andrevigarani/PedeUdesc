@@ -59,7 +59,7 @@
                         </li>
                         @endif
                         @else
-                        <li><a href=""><img src="{{ asset('images/admin_icon.png')}}" style="width: 65px;"></a></li>
+                        <li><a href="{{route('admin.order.received')}}"><img src="{{ asset('images/admin_icon.png')}}" style="width: 65px;"></a></li>
 
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"

@@ -38,3 +38,4 @@ Route::post('/order/payment/pix/store', [PaymentController::class, 'pixStore'])-
 Route::post('/order/payment/store', [OrderController::class, 'store'])->name('user.order.payment.store');
 Route::get('/order/payment/message', [OrderController::class, 'message'])->name('user.order.payment.message');
 Route::post('/order/payment/card', [PaymentController::class, 'cardStore'])->name('user.order.payment.card');
+Route::get('order/receveid', [App\Http\Controllers\EvaluationController::class, 'listOrders'])->name('user.order.received');
