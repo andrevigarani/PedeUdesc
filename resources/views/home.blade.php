@@ -38,10 +38,13 @@
         <div style="text-align: center;">
             <div class="d-flex">
                 <img src="data:image/png;base64, {{ $food->img }}" alt="{{ $food->name }}" class="w-100">
-                <a href="{{ route('user.add.bag', ['id' => $food['id']]) }}" class="btn btn-success position-absolute m-3">Adicionar à sacola</a>
+                <a href="{{ route('user.add.bag', ['id' => $food['id']]) }}"
+                    class="btn btn-success position-absolute m-3"
+                    style="background-color: #72DB8F; border: #72DB8F;">Adicionar à sacola</a>
             </div>
             <h4 style="font-size: 25px;">{{ $food->name }}</h4>
-            <p class="btn btn-success py-2 px-3 rounded-4" style="font-size: large; cursor: unset;">
+            <p class="btn btn-success py-2 px-3 rounded-4"
+                style="font-size: large; cursor: unset;background-color: #72DB8F; border: #72DB8F;">
                 R${{ $food->price }}
             </p>
         </div>
@@ -58,11 +61,14 @@
         <div style="text-align: center;">
             <div class="d-flex">
                 <img src="data:image/png;base64, {{ $drink->img }}" alt="{{ $drink->name }}" class="w-100">
-                <a href="{{ route('user.add.bag', ['id' => $drink['id']]) }}" class="btn btn-success position-absolute m-3">Adicionar à sacola</a>
+                <a href="{{ route('user.add.bag', ['id' => $drink['id']]) }}"
+                    class="btn btn-success position-absolute m-3"
+                    style="background-color: #72DB8F; border: #72DB8F;">Adicionar à sacola</a>
             </div>
 
             <h4 style="font-size: 25px;">{{ $drink->name }}</h4>
-            <p class="btn btn-success py-2 px-3 rounded-4" style="font-size: large; cursor: unset;">
+            <p class="btn btn-success py-2 px-3 rounded-4"
+                style="font-size: large; cursor: unset;background-color: #72DB8F; border: #72DB8F;">
                 R${{ $drink->price }}
             </p>
         </div>
