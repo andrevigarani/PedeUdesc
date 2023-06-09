@@ -17,4 +17,8 @@ class Evaluation extends Model
         'score',
         'comment',
     ];
+
+    public function order(): BelongsTo{
+        return $this->belongsTo(Order::class, 'id_order');
+    }
 }

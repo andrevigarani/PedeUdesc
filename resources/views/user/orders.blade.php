@@ -37,7 +37,7 @@
                                         Cartão
                                         @endif
                                         </td>
-                                        <td class="bg-secondary bg-opacity-50 text-center"> Avaliar</td>
+                                        <td class="bg-secondary bg-opacity-50 text-center"><a href="{{ route('user.order.evaluation') }}">Avaliar</a></td>
                                 </tbody>
                                 @endforeach
                                 
@@ -51,7 +51,7 @@
     </div>
 
 <div class="copyright_section">
-    <div class="container" style="text-align: center; margin-top: 6.5cm;">
+    <div class="container" style="text-align: center; margin-top: 3.5cm;">
         <p class="copyright_text">2023 All Rights Reserved. Design by MN Sistemas</a></p>
     </div>
 </div>

@@ -58,7 +58,7 @@
                         @else
 
                         <li><a href="{{route('user.show.bag')}}"><img src="{{ asset('images/icone_sacola_home.png')}}" style="width: 55px; margin-top: -5px;"></a></li>
-                        <li><a href="{{route('user.order.received')}}"><img src="{{ asset('images/admin_icon.png')}}" style="width: 65px;"></a></li>
+                        <li><a href="{{route('user.order.done')}}"><img src="{{ asset('images/admin_icon.png')}}" style="width: 65px;"></a></li>
     
                         <li class="nav-item dropdown">
                     
