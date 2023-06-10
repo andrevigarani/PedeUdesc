@@ -1,4 +1,5 @@
 @extends('layouts.appAdmin')
+
 @section('content')
 
 <div class="contact_section layout_padding">
@@ -7,51 +8,159 @@
             <a href="{{ route('admin.home')}}" class="btn btn-primary" style="margin-left: -70px; text-decoration: none; color: white; background-color:#72DB8F;
                 outline: none; border: none;">Voltar</a>
         </div>
-        <center>
-            <table class="order-table">
-                <thead>
-                    <tr>
-                        <th
-                            style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd; background-color: #f2f2f2;">
-                            ID pedido</th>
-                        <th
-                            style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd; background-color: #f2f2f2;">
-                            Data de criação</th>
-                        <th
-                            style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd; background-color: #f2f2f2;">
-                            Tipo de pagamento</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($orders as $order)
-                    <tr>
-                        <td style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd;">
-                            {{ $order->id }}
-                        </td>
-                        <td style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd;">
-                            {{ $order->created_at }}
-                        </td>
-                        <td style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd;">
-                            @if($order->id_payment == 2)
-                            Pix
-                            @elseif($order->id_payment == 3)
-                            Dinheiro
-                            @elseif($order->id_payment == 1)
-                            Cartão
-                            @endif
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-
-            </table>
-        </center>
+        <div class="col-md-12">
+            <div class="row">
+                @foreach($orders as $order)
+                <div class="col-md-4" style="margin-top: 2cm; margin-left: 4.5cm;">
+                    <table class="order-table">
+                        <thead>
+                            <tr>
+                                <th style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd; background-color: #f2f2f2;">
+                                    ID pedido</th>
+                                <th style="padding: 10px; text-align: center; border-bottom: 1px solid #ddd; background-color: #f2f2f2; text-decoration: solid;">
+                                    Data de criação</th>
+                                <th style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd; background-color: #f2f2f2;">
+                                    Tipo de pagamento</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 10px; text-align: center; border-bottom: 1px solid #ddd;">
+                                    {{ $order->id }}
+                                </td>
+                                <td style="padding: 10px; text-align: center; border-bottom: 1px solid #ddd;">
+                                    {{ $order->created_at }}
+                                </td>
+                                <td style="padding: 10px; text-align: center; border-bottom: 1px solid #ddd; margin-bottom:3cm;">
+                                    @if($order->id_payment == 2)
+                                    Pix
+                                    @elseif($order->id_payment == 3)
+                                    Dinheiro
+                                    @elseif($order->id_payment == 1)
+                                    Cartão
+                                    @endif
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="button-container" style="margin-top: 10px; text-align: center; margin-right: 1.5cm;">
+                        <button class="btn btn-success py-2 px-3 rounded-4 accept-btn" style="font-size: large; background-color: #72DB8F; border: #72DB8F;" data-order-id="{{ $order->id }}">Aceitar</button>
+                        <button class="btn btn-danger py-2 px-3 rounded-4 decline-btn" style="font-size: large; background-color: red; border: red; margin-left: 10px;" data-order-id="{{ $order->id }}">Recusar</button>
+                        <p class="status-text" style="display: none;">
+                            <strong class="accepted-text"></strong>
+                        </p>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+        </div>
     </div>
 </div>
+@endsection
 
-<div class="copyright_section">
-    <div class="container" style="text-align: center; margin-top:13cm;">
-        <p class="copyright_text">2023 All Rights Reserved. Design by MN Sistemas</a></p>
-    </div>
-    </form>
-    @endsection
+@section('scripts')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.accept-btn').hide();
+        $('.decline-btn').hide();
+
+        if (localStorage.getItem('orderActions')) {
+            var orderActions = JSON.parse(localStorage.getItem('orderActions'));
+
+            orderActions.forEach(function(action) {
+                var orderId = action.orderId;
+                var accepted = action.accepted;
+
+                var acceptButton = $('.accept-btn[data-order-id="' + orderId + '"]');
+                var declineButton = $('.decline-btn[data-order-id="' + orderId + '"]');
+                var statusText = acceptButton.closest('.button-container').find('.status-text');
+                var acceptedText = statusText.find('.accepted-text');
+
+                acceptButton.hide();
+                declineButton.hide();
+
+                if (accepted) {
+                    acceptedText.text('ACEITO').addClass('green-text');
+                } else {
+                    acceptedText.text('RECUSADO').addClass('red-text');
+                }
+
+                statusText.show();
+            });
+        }
+
+        $('.order-table').each(function() {
+            var statusText = $(this).closest('.col-md-4').find('.status-text');
+
+            if (statusText.css('display') === 'none') {
+                var acceptButton = $(this).closest('.col-md-4').find('.accept-btn');
+                var declineButton = $(this).closest('.col-md-4').find('.decline-btn');
+
+                acceptButton.show();
+                declineButton.show();
+            }
+        });
+
+        $('.accept-btn').click(function() {
+            var orderId = $(this).data('order-id');
+            var container = $(this).closest('.button-container');
+            var acceptButton = container.find('.accept-btn');
+            var declineButton = container.find('.decline-btn');
+            var statusText = container.find('.status-text');
+            var acceptedText = statusText.find('.accepted-text');
+
+            acceptButton.hide();
+            declineButton.hide();
+            acceptedText.text('ACEITO').addClass('green-text');
+            statusText.show();
+
+            var orderActions = localStorage.getItem('orderActions') ? JSON.parse(localStorage.getItem(
+                'orderActions')) : [];
+            var action = {
+                orderId: orderId,
+                accepted: true
+            };
+            orderActions.push(action);
+            localStorage.setItem('orderActions', JSON.stringify(orderActions));
+        });
+
+        $('.decline-btn').click(function() {
+            var orderId = $(this).data('order-id');
+            var container = $(this).closest('.button-container');
+            var acceptButton = container.find('.accept-btn');
+            var declineButton = container.find('.decline-btn');
+            var statusText = container.find('.status-text');
+            var acceptedText = statusText.find('.accepted-text');
+
+            acceptButton.hide();
+            declineButton.hide();
+            acceptedText.text('RECUSADO').addClass('red-text');
+            statusText.show();
+
+            var orderActions = localStorage.getItem('orderActions') ? JSON.parse(localStorage.getItem(
+                'orderActions')) : [];
+            var action = {
+                orderId: orderId,
+                accepted: false
+            };
+            orderActions.push(action);
+            localStorage.setItem('orderActions', JSON.stringify(orderActions));
+        });
+    });
+</script>
+
+<style>
+    .hidden {
+        display: none;
+    }
+
+    .green-text {
+        color: green;
+    }
+
+    .red-text {
+        color: red;
+    }
+</style>
+@endsection
