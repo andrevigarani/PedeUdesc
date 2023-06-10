@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreEvaluation;
 use App\Models\Order;
-use App\Http\Controllers\Evaluation;
+use App\Models\Evaluation;
 
 class EvaluationController extends Controller
 {
@@ -19,13 +20,12 @@ class EvaluationController extends Controller
         return view('user.evaluation');
     }
 
-    public function store(Evaluation $evaluation)
+    public function store(StoreEvaluation $evaluation)
     {
         $data = $evaluation->all();
-        dd($data);
 
-        return view('user.orders');
+        $evaluation = Evaluation::create($data);
+
+        return redirect()->route('user.order.done');
     }
-
-
 }

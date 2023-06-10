@@ -88,6 +88,7 @@
             @yield('content')
         </main>
     </div>
+    @yield('star')
 </body>
 
 </html>
