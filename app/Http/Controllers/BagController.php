@@ -38,6 +38,10 @@ class BagController extends Controller
     {
         $client = Client::findByUser(Auth::id());
         $bag = Bag::findOpenBagByClient($client->id);
+        if(is_null($bag)){
+            $bag = new Bag();
+            $client->bags()->save($bag);
+        }
         return view('user.bag')->with(['bagItems' => $bag->getBagCheckout()]);
     }
 
